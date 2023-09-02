@@ -10,18 +10,22 @@ const StyledList = styled.ul`
 type ListProps = {
   users: UserDto[];
   handleDelete: (username: UserDto) => void;
-}
+};
 
-export function List({users, handleDelete}: ListProps) {
-
+function List({ users, handleDelete }: ListProps) {
   return (
     <StyledList>
       {users.map((user) => {
         return (
-          <>
-            <UserRow key={user.username} user={user} handleDelete={handleDelete}/>
-          </>
-        )})}
+          <UserRow
+            key={user.username}
+            user={user}
+            handleDelete={handleDelete}
+          />
+        );
+      })}
     </StyledList>
   );
 }
+
+export default List;

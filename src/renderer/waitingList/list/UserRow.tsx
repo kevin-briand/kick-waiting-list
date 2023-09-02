@@ -16,7 +16,7 @@ const Username = styled.div`
 const DeleteButton = styled.button`
   border: none;
   padding: 3px 20px;
-  background-color: #E33;
+  background-color: #e33;
   color: white;
   border-radius: 0 3px 3px 0;
   &:hover {
@@ -24,17 +24,16 @@ const DeleteButton = styled.button`
   }
 `;
 
-
 export type listItemProps = {
   user: UserDto;
   handleDelete: (user: UserDto) => void;
-}
+};
 
-export const UserRow = ({user, handleDelete}: listItemProps) => {
+export function UserRow({ user, handleDelete }: listItemProps) {
   return (
     <Row>
       <Username>{user.username}</Username>
       <DeleteButton onClick={() => handleDelete(user)}>Delete</DeleteButton>
     </Row>
-  )
+  );
 }

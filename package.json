@@ -11,15 +11,10 @@
   },
   "license": "MIT",
   "author": {
-    "name": "firedream",
+    "name": "briand kévin",
     "email": "briand-kevin@hotmail.fr"
   },
-  "contributors": [
-    {
-      "name": "Amila Welihinda",
-      "email": "amilajack@gmail.com"
-    }
-  ],
+  "contributors": [],
   "main": "./src/main/main.ts",
   "scripts": {
     "build": "concurrently \"npm run build:main\" \"npm run build:renderer\"",
@@ -83,7 +78,6 @@
     }
   },
   "dependencies": {
-    "@types/ws": "^8.5.5",
     "electron-debug": "^3.2.0",
     "electron-log": "^4.4.8",
     "electron-updater": "^5.3.0",
@@ -109,6 +103,7 @@
     "@types/styled-components": "^5.1.26",
     "@types/terser-webpack-plugin": "^5.0.4",
     "@types/webpack-bundle-analyzer": "^4.6.0",
+    "@types/ws": "^8.5.5",
     "@typescript-eslint/eslint-plugin": "^5.59.8",
     "@typescript-eslint/parser": "^5.59.8",
     "browserslist-config-erb": "^0.0.3",
@@ -221,12 +216,9 @@
     ],
     "publish": {
       "provider": "github",
-      "owner": "electron-react-boilerplate",
-      "repo": "electron-react-boilerplate"
+      "owner": "kevin-briand",
+      "repo": "kick-waiting-list"
     }
-  },
-  "collective": {
-    "url": "https://opencollective.com/electron-react-boilerplate-594"
   },
   "devEngines": {
     "node": ">=14.x",

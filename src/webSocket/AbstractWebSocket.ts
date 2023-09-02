@@ -1,7 +1,8 @@
-
-export abstract class AbstractWebSocket {
+abstract class AbstractWebSocket {
   private ws: WebSocket;
+
   private reconnect: boolean;
+
   private readonly url: string;
 
   protected constructor(url: string, reconnect = true) {
@@ -19,23 +20,23 @@ export abstract class AbstractWebSocket {
   }
 
   protected onOpen(): void {
+    // eslint-disable-next-line no-console
     console.log('Connected!');
   }
 
   send(data: string): void {
     if (this.ws.readyState === WebSocket.OPEN) {
       this.ws.send(data);
-      console.log(`send ${data}`);
-    }
-    else {
-      this.ws.close()
-      this.ws = new WebSocket(this.url)
+    } else {
+      this.ws.close();
+      this.ws = new WebSocket(this.url);
     }
   }
 
   abstract onMessage(ev: MessageEvent<any>): void;
 
   protected onClose(): void {
+    // eslint-disable-next-line no-console
     console.log('Disconnected!');
     if (this.reconnect) {
       this.ws = new WebSocket(this.url);
@@ -55,6 +56,9 @@ export abstract class AbstractWebSocket {
   }
 
   onError(ev: Event): void {
+    // eslint-disable-next-line no-console
     console.error(`An error occurred: ${ev}`);
   }
 }
+
+export default AbstractWebSocket;

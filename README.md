@@ -1,7 +1,4 @@
 # Kick waiting list
-
-----
-
 ## Install
 
 Clone the repo and install dependencies:

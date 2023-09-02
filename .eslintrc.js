@@ -1,5 +1,5 @@
 module.exports = {
-  extends: 'erb',
+  extends: ['erb', 'plugin:prettier/recommended'],
   plugins: ['@typescript-eslint'],
   rules: {
     // A temporary hack related to IDE not resolving correct package.json
@@ -13,6 +13,7 @@ module.exports = {
     '@typescript-eslint/no-shadow': 'error',
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': 'error',
+    'class-methods-use-this': 'off',
   },
   parserOptions: {
     ecmaVersion: 2020,

@@ -1,19 +1,31 @@
-import { AbstractWebSocket } from '../../webSocket/AbstractWebSocket';
+import AbstractWebSocket from '../../webSocket/AbstractWebSocket';
 import { KickDataDto } from '../dto/kickData.dto';
 import { DataDto } from '../dto/data.dto';
 
-const PING_DATA = '{"event":"pusher:ping","data":{}}'
-const TIMEOUT_PING = 119000
+const PING_DATA = '{"event":"pusher:ping","data":{}}';
+const TIMEOUT_PING = 119000;
 
-export class WebSocketKick extends AbstractWebSocket {
+class WebSocketKick extends AbstractWebSocket {
   handleMessage: (data: KickDataDto) => void;
+
   chatroomId: number;
+
   authToken: string;
+
+  // eslint-disable-next-line no-undef
   intervalPing?: NodeJS.Timer;
+
+  // eslint-disable-next-line no-undef
   timeoutPing?: NodeJS.Timer;
 
-  constructor(chatroomId: number, handleMessage: (data: KickDataDto) => void, authToken: string = '') {
-    super("wss://ws-us2.pusher.com/app/eb1d5f283081a78b932c?protocol=7&client=js&version=7.6.0&flash=false");
+  constructor(
+    chatroomId: number,
+    handleMessage: (data: KickDataDto) => void,
+    authToken: string = ''
+  ) {
+    super(
+      'wss://ws-us2.pusher.com/app/eb1d5f283081a78b932c?protocol=7&client=js&version=7.6.0&flash=false'
+    );
     this.chatroomId = chatroomId;
     this.authToken = authToken;
     this.handleMessage = handleMessage;
@@ -22,7 +34,9 @@ export class WebSocketKick extends AbstractWebSocket {
 
   protected onOpen() {
     super.onOpen();
-    this.send(`{"event":"pusher:subscribe","data":{"auth":"","channel":"chatrooms.${this.chatroomId}.v2"}}`);
+    this.send(
+      `{"event":"pusher:subscribe","data":{"auth":"","channel":"chatrooms.${this.chatroomId}.v2"}}`
+    );
   }
 
   onMessage(ev: MessageEvent<string>): void {
@@ -30,13 +44,14 @@ export class WebSocketKick extends AbstractWebSocket {
     if (this.handleMessage === undefined || !ev.data) {
       return;
     }
-    let kickData = JSON.parse(ev.data);
+    const kickData = JSON.parse(ev.data);
     if (kickData.event && kickData.event.includes('subscription_succeeded')) {
+      // eslint-disable-next-line no-console
       console.log('subscribe successful');
       return;
     }
     if (!kickData.data) {
-      return
+      return;
     }
     if (typeof kickData.data === 'string') {
       kickData.data = JSON.parse(kickData.data) as DataDto;
@@ -56,17 +71,20 @@ export class WebSocketKick extends AbstractWebSocket {
 
   private resetTimeoutPing(): void {
     clearInterval(this.intervalPing);
-    clearTimeout(this.timeoutPing)
+    clearTimeout(this.timeoutPing);
     this.intervalPing = setInterval(() => this.sendPing(), TIMEOUT_PING);
   }
 
   private sendPing(): void {
     this.send(PING_DATA);
-    this.timeoutPing = setTimeout(() => this.pingError(), 15000)
+    this.timeoutPing = setTimeout(() => this.pingError(), 15000);
   }
 
   private pingError(): void {
+    // eslint-disable-next-line no-console
     console.log('no response from the server');
     this.open();
   }
 }
+
+export default WebSocketKick;
