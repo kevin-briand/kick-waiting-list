@@ -12,7 +12,7 @@ type ListProps = {
   handleDelete: (username: UserDto) => void;
 };
 
-function List({ users, handleDelete }: ListProps) {
+function UsersList({ users, handleDelete }: ListProps) {
   return (
     <StyledList>
       {users.map((user) => {
@@ -28,4 +28,4 @@ function List({ users, handleDelete }: ListProps) {
   );
 }
 
-export default List;
+export default UsersList;

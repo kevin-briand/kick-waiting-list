@@ -45,21 +45,10 @@ class WebSocketKick extends AbstractWebSocket {
       return;
     }
     const kickData = JSON.parse(ev.data);
-    if (kickData.event && kickData.event.includes('subscription_succeeded')) {
-      // eslint-disable-next-line no-console
-      console.log('subscribe successful');
-      return;
-    }
-    if (!kickData.data) {
-      return;
-    }
-    if (typeof kickData.data === 'string') {
-      kickData.data = JSON.parse(kickData.data) as DataDto;
-    }
+    kickData.data = JSON.parse(kickData.data) as DataDto;
     if (!kickData.data.content) {
-      return;
+      kickData.data = undefined;
     }
-
     this.handleMessage(kickData);
   }
 

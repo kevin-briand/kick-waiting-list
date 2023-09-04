@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { UserDto } from './dto/user.dto';
 
 const Row = styled.li`
@@ -30,10 +31,14 @@ export type listItemProps = {
 };
 
 export function UserRow({ user, handleDelete }: listItemProps) {
+  const { t } = useTranslation('translation');
+
   return (
     <Row>
       <Username>{user.username}</Username>
-      <DeleteButton onClick={() => handleDelete(user)}>Delete</DeleteButton>
+      <DeleteButton onClick={() => handleDelete(user)}>
+        {t('button.delete')}
+      </DeleteButton>
     </Row>
   );
 }

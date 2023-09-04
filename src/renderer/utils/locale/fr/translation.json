@@ -1,0 +1,14 @@
+{
+  "title": "Liste d'attente",
+  "ws": {
+    "connected": "Connecté au serveur, en attente de la souscription !",
+    "subscribed": "Connecté au chat !"
+  },
+  "user": {
+    "added": "L'utilisateur {{username}} a été ajouté.",
+    "deleted": "L'utilisateur {{username}} a été supprimé."
+  },
+  "button": {
+    "delete": "Supprimer"
+  }
+}

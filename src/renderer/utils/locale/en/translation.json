@@ -1,0 +1,14 @@
+{
+  "title": "Waiting list",
+  "ws": {
+    "connected": "Connected to server, waiting for chat subscription !",
+    "subscribed": "Connected to the chat !"
+  },
+  "user": {
+    "added": "The user {{username}} has been added.",
+    "deleted": "The user {{username}} has been deleted."
+  },
+  "button": {
+    "delete": "Delete"
+  }
+}
