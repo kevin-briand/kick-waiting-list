@@ -1,4 +1,4 @@
-import { SenderDto } from './Sender.dto';
+import { SenderDto } from './sender.dto';
 
 export type DataDto = {
   id: string;

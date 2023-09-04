@@ -19,10 +19,7 @@ abstract class AbstractWebSocket {
     this.ws.onclose = this.onClose.bind(this);
   }
 
-  protected onOpen(): void {
-    // eslint-disable-next-line no-console
-    console.log('Connected!');
-  }
+  protected onOpen(): void {}
 
   send(data: string): void {
     if (this.ws.readyState === WebSocket.OPEN) {
@@ -36,8 +33,6 @@ abstract class AbstractWebSocket {
   abstract onMessage(ev: MessageEvent<any>): void;
 
   protected onClose(): void {
-    // eslint-disable-next-line no-console
-    console.log('Disconnected!');
     if (this.reconnect) {
       this.ws = new WebSocket(this.url);
     }

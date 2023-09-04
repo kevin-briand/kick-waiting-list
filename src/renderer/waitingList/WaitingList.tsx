@@ -1,16 +1,16 @@
 import { useCallback, useContext, useEffect, useRef, useState } from 'react';
-import WebSocketKick from '../../kick/webSocket/webSocket-kick';
+import WebSocketKick from '../../kick/webSocket/web-socket-kick';
 import { UserDto } from './list/dto/user.dto';
-import { KickDataDto } from '../../kick/dto/kickData.dto';
+import { KickDataDto } from '../../kick/webSocket/dto/kick-data.dto';
 import UsersList from './list/UsersList';
 import { AlertMessageContext } from '../components/alert-message/AlertMessageContext';
 import { AlertMessageDto } from '../components/alert-message/dto/alert-message-dto';
 import AlertType from '../components/alert-message/dto/alert-type';
-import { DataDto } from '../../kick/dto/data.dto';
+import { DataDto } from '../../kick/webSocket/dto/data.dto';
 import useAlertInfo from '../hook/useAlertInfo';
 
 // TODO move to localStorage
-const CHANNEL_ID = 3909359; // found by call API
+const CHANNEL_ID = 3909359;
 const MESSAGE_SUBSCRIBE_PATTERN = 'Ton ticket est acheté';
 const MESSAGE_UNSUBSCRIBE = '!partir';
 const ONLY_BOTRIX_CAN_SUBSCRIBE = true;

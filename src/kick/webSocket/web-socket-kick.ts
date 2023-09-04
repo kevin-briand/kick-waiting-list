@@ -1,6 +1,6 @@
-import AbstractWebSocket from '../../webSocket/AbstractWebSocket';
-import { KickDataDto } from '../dto/kickData.dto';
-import { DataDto } from '../dto/data.dto';
+import { DataDto } from './dto/data.dto';
+import AbstractWebSocket from '../../webSocket/abstract-web-socket';
+import { KickDataDto } from './dto/kick-data.dto';
 
 const PING_DATA = '{"event":"pusher:ping","data":{}}';
 const TIMEOUT_PING = 119000;
