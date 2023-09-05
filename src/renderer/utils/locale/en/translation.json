@@ -1,5 +1,5 @@
 {
-  "title": "Waiting list",
+  "title": "Waiting list Kick",
   "ws": {
     "connected": "Connected to server, waiting for chat subscription !",
     "subscribed": "Connected to the chat !"
@@ -9,6 +9,38 @@
     "deleted": "The user {{username}} has been deleted."
   },
   "button": {
-    "delete": "Delete"
+    "delete": "Delete",
+    "parameters": "Parameters",
+    "back": "Back"
+  },
+  "error": {
+    "channelId": "The chat ID is not filled in"
+  },
+  "form": {
+    "emptyField": "You should provide all fields !",
+    "emptyUsername": "You should provide username for get chat id",
+    "getChannelId": "Try to get channel id...",
+    "successGetChannelId": "Getting Chat ID successfully !",
+    "failGetChannelId": "Fail to get channel ID, your username is good ?",
+    "saved": "Datas saved !",
+    "defaultValue": {
+      "subscribe": "Your ticket has been purchased",
+      "unsubscribe": "!quit"
+    },
+    "label": {
+      "language": "Language",
+      "userInfo": "User info",
+      "username": "Kick username",
+      "chatId": "Chat ID",
+      "getChatId": "Get chat ID",
+      "messagePattern": "Subscribe/Unsubscribe message pattern",
+      "subscribe": "Subscribe",
+      "unsubscribe": "Unsubscribe",
+      "onlyBotrix": "Only Botrix can subscribe",
+      "advanced": "Advanced",
+      "usernamePattern": "Username pattern",
+      "botrixId": "Botrix ID",
+      "save": "Save"
+    }
   }
 }

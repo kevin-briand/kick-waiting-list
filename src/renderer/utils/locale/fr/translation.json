@@ -1,5 +1,5 @@
 {
-  "title": "Liste d'attente",
+  "title": "Liste d'attente Kick",
   "ws": {
     "connected": "Connecté au serveur, en attente de la souscription !",
     "subscribed": "Connecté au chat !"
@@ -9,6 +9,38 @@
     "deleted": "L'utilisateur {{username}} a été supprimé."
   },
   "button": {
-    "delete": "Supprimer"
+    "delete": "Supprimer",
+    "parameters": "Paramètres",
+    "back": "Retour"
+  },
+  "error": {
+    "channelId": "L'ID du chat n'est pas renseigné"
+  },
+  "form": {
+    "emptyField": "Vous devez remplir tous les champs !",
+    "emptyUsername": "Vous devez saisir votre nom d'utilisateur",
+    "getChannelId": "Tentative de récupération de l'ID du chat...",
+    "successGetChannelId": "Récupération de l'ID du chat réussi !",
+    "failGetChannelId": "Echec de récupération de l'ID du chat, votre nom d'utilisateur est bon ?",
+    "saved": "Données sauvegardées !",
+    "defaultValue": {
+      "subscribe": "Ton ticket est acheté",
+      "unsubscribe": "!partir"
+    },
+    "label": {
+      "language": "Langage",
+      "userInfo": "Info utilisateur",
+      "username": "Nom d'utilisateur Kick",
+      "chatId": "ID chat",
+      "getChatId": "Récupérer ID chat",
+      "messagePattern": "Modèle de message",
+      "subscribe": "Abonnement",
+      "unsubscribe": "Désabonnement",
+      "onlyBotrix": "Seul Botrix peux s'abonner",
+      "advanced": "Avancé",
+      "usernamePattern": "Modèle du nom d'utilisateur",
+      "botrixId": "ID Botrix",
+      "save": "Enregistrer"
+    }
   }
 }

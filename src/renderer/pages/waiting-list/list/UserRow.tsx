@@ -1,28 +1,24 @@
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { UserDto } from './dto/user.dto';
+import ButtonCancel from '../../../components/button/ButtonCancel';
 
 const Row = styled.li`
   display: flex;
   justify-content: space-between;
-  margin: 2px 0;
+  margin: 2px 5px;
   border-radius: 2px;
   box-shadow: 0 0 3px black;
 `;
 
 const Username = styled.div`
   padding: 5px 5px;
+  font-size: 1.2em;
+  font-family: 'Open Sans', serif;
 `;
 
-const DeleteButton = styled.button`
-  border: none;
-  padding: 3px 20px;
-  background-color: #e33;
-  color: white;
+const ButtonDelete = styled(ButtonCancel)`
   border-radius: 0 3px 3px 0;
-  &:hover {
-    box-shadow: 0 0 2px black;
-  }
 `;
 
 export type listItemProps = {
@@ -36,9 +32,9 @@ export function UserRow({ user, handleDelete }: listItemProps) {
   return (
     <Row>
       <Username>{user.username}</Username>
-      <DeleteButton onClick={() => handleDelete(user)}>
+      <ButtonDelete onClick={() => handleDelete(user)}>
         {t('button.delete')}
-      </DeleteButton>
+      </ButtonDelete>
     </Row>
   );
 }

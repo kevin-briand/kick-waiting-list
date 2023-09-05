@@ -5,6 +5,8 @@ import { UserRow } from './UserRow';
 const StyledList = styled.ul`
   display: flex;
   flex-direction: column;
+  margin: 5px auto;
+  max-width: 600px;
 `;
 
 type ListProps = {
