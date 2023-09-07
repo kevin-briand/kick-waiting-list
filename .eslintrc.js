@@ -2,7 +2,7 @@ module.exports = {
   extends: ['erb', 'plugin:prettier/recommended'],
   plugins: ['@typescript-eslint'],
   rules: {
-    // A temporary hack related to IDE not resolving correct package.json
+    'react/require-default-props': 'off',
     'import/no-extraneous-dependencies': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/jsx-filename-extension': 'off',

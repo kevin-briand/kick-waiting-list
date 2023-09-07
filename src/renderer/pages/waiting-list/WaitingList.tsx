@@ -1,4 +1,4 @@
-import {
+import React, {
   useCallback,
   useContext,
   useEffect,
@@ -28,6 +28,7 @@ import {
 } from '../parameters/consts';
 import useAlertError from '../../hook/useAlertError';
 import { SenderDto } from '../../../kick/webSocket/dto/sender.dto';
+import WaitingListHeader from './WaitingListHeader';
 
 const CONNECTION_ESTABLISHED = 'connection_established';
 const SUBSCRIPTION_SUCCEEDED = 'subscription_succeeded';
@@ -38,12 +39,12 @@ function WaitingList() {
     () => Number.parseInt(localStorage.get(CHAT_ID_KEY), 10),
     []
   );
-  const MESSAGE_SUBSCRIBE_PATTERN = useMemo(
-    () => localStorage.get(SUBSCRIBE_KEY),
+  const MESSAGE_SUBSCRIBE = useMemo(
+    () => localStorage.get(SUBSCRIBE_KEY).split(';'),
     []
   );
   const MESSAGE_UNSUBSCRIBE = useMemo(
-    () => localStorage.get(UNSUBSCRIBE_KEY),
+    () => localStorage.get(UNSUBSCRIBE_KEY).split(';'),
     []
   );
   const ONLY_BOTRIX_CAN_SUBSCRIBE = useMemo(
@@ -121,18 +122,21 @@ function WaitingList() {
 
   const handleChatMessage = useCallback(
     (data: KickDataDto) => {
-      if (data.data.content.includes(MESSAGE_SUBSCRIBE_PATTERN)) {
+      if (
+        MESSAGE_SUBSCRIBE.some((value) =>
+          data.data.content.includes(value.trim())
+        )
+      ) {
         handleSubscribeMessage(data.data);
-      } else if (data.data.content.includes(MESSAGE_UNSUBSCRIBE)) {
+      } else if (
+        MESSAGE_UNSUBSCRIBE.some((value) =>
+          data.data.content.includes(value.trim())
+        )
+      ) {
         deleteUser(data.data.sender);
       }
     },
-    [
-      MESSAGE_SUBSCRIBE_PATTERN,
-      MESSAGE_UNSUBSCRIBE,
-      deleteUser,
-      handleSubscribeMessage,
-    ]
+    [MESSAGE_SUBSCRIBE, MESSAGE_UNSUBSCRIBE, deleteUser, handleSubscribeMessage]
   );
 
   const handleMessage = useCallback(
@@ -200,6 +204,7 @@ function WaitingList() {
 
   return (
     <Container>
+      <WaitingListHeader handleClear={() => setUsersList([])} />
       <UsersList users={usersList} handleDelete={deleteUser} />
     </Container>
   );

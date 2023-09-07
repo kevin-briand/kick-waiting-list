@@ -11,7 +11,16 @@
   "button": {
     "delete": "Supprimer",
     "parameters": "Paramètres",
-    "back": "Retour"
+    "back": "Retour",
+    "clearList": "Effacer liste",
+    "accept": "Oui",
+    "decline": "Non"
+  },
+  "confirm": {
+    "clearList": {
+      "title": "Confirmer l'effacement de la liste",
+      "content": "Voulez-vous vraiment effacer la liste ?"
+    }
   },
   "error": {
     "channelId": "L'ID du chat n'est pas renseigné"
@@ -41,6 +50,15 @@
       "usernamePattern": "Modèle du nom d'utilisateur",
       "botrixId": "ID Botrix",
       "save": "Enregistrer"
+    },
+    "tooltip": {
+      "username": "Saisissez votre nom d'utilisateur Kick puis cliquez sur le bouton '$t(form.label.getChatId)' pour obtenir votre ID de chat",
+      "chatId": "Votre ID de chat, nécessaire pour l'écoute du chat par l'application",
+      "subscribe": "Entrez un texte ou la commande que l'application va écouter. chaque fois que ce texte sera écrit dans le chat, l'utilisateur l'ayant saisi sera ajouté à la liste. Vous pouvez placer plusieurs commandes séparées par un ;",
+      "unsubscribe": "Entrez un texte ou la commande que l'application va écouter. chaque fois que ce texte sera écrit dans le chat, l'utilisateur l'ayant saisi sera retiré de la liste. Vous pouvez placer plusieurs commandes séparées par un ;",
+      "onlyBotrix": "Cocher cette case pour n'autoriser que Botrix à inscrire des utilisateurs à la liste. Cela vous permet de filtrer les inscriptions, seulement les abonnés ou passer par un achat dans la boutique de Botrix par exemple. Note: Si vous passez par Botrix pour l'inscription le message que Botrix écrira dans le chat doit impérativement contenir le nom de l'utilisateur sous forme @username.",
+      "usernamePattern": "Ceci est le modèle pour récupérer le nom d'utilisateur lorsque l'abonnement avec Botrix est activé. Cela doit être un Regexp",
+      "idBotrix": "L'id de Botrix sur Kick, nécessaire si vous activez l'abonnement par Botrix."
     }
   }
 }

@@ -11,7 +11,16 @@
   "button": {
     "delete": "Delete",
     "parameters": "Parameters",
-    "back": "Back"
+    "back": "Back",
+    "clearList": "Clear list",
+    "accept": "Yes",
+    "decline": "No"
+  },
+  "confirm": {
+    "clearList": {
+      "title": "Confirm list deletion",
+      "content": "Can you really clear the list ?"
+    }
   },
   "error": {
     "channelId": "The chat ID is not filled in"
@@ -41,6 +50,15 @@
       "usernamePattern": "Username pattern",
       "botrixId": "Botrix ID",
       "save": "Save"
+    },
+    "tooltip": {
+      "username": "Enter your Kick username, then click on the '$t(form.label.getChatId)' button to obtain your chat ID.",
+      "chatId": "Your chat ID, used to listen to the chat with the application",
+      "subscribe": "Enter a text or command for the application to listen for, each time this text is written in the chat, the user who entered it will be added to the list. You can enter several commands separated by a ;",
+      "unsubscribe": "Enter a text or command for the application to listen for, each time this text is written in the chat, the user who entered it will be removed from the list. You can enter several commands separated by a ;",
+      "onlyBotrix": "Check for only Botrix can subscribe users to the list. This allows you to filter registrations, subscribers only or by purchase in the Botrix store, for example. Note: If you use Botrix for registration, the message that Botrix writes in the chat must contain the username in @username format.",
+      "usernamePattern": "This is the username pattern, it's used for getting the username when only Botrix subscribe is activated. you should use a Regexp",
+      "idBotrix": "This is the Botrix Id, used only if you have activated the Botrix subscription."
     }
   }
 }

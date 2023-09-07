@@ -149,8 +149,6 @@ function Parameters() {
         <Grid>
           {t('form.label.language')}
           <select
-            id="language"
-            name="language"
             ref={languageRef}
             defaultValue={localStorage.get(LANGUAGE_KEY) || LANGUAGE_DEFAULT}
             onChange={(event) => i18n.changeLanguage(event.target.value)}
@@ -169,8 +167,7 @@ function Parameters() {
           {t('form.label.username')}
           <input
             type="text"
-            id="username"
-            name="username"
+            title={t('form.tooltip.username')}
             ref={usernameRef}
             defaultValue={localStorage.get(USERNAME_KEY) || ''}
           />
@@ -178,9 +175,8 @@ function Parameters() {
           <InlineBox>
             <input
               type="number"
-              id="chatId"
-              name="chatId"
               disabled={!advancedEnabled}
+              title={t('form.tooltip.chatId')}
               ref={chatRef}
               defaultValue={localStorage.get(CHAT_ID_KEY) || ''}
             />
@@ -196,8 +192,7 @@ function Parameters() {
           {t('form.label.subscribe')}
           <input
             type="text"
-            id="subscribe"
-            name="subscribe"
+            title={t('form.tooltip.subscribe')}
             defaultValue={
               localStorage.get(SUBSCRIBE_KEY) ||
               t('form.defaultValue.subscribe')
@@ -207,8 +202,7 @@ function Parameters() {
           {t('form.label.unsubscribe')}
           <input
             type="text"
-            id="unsubscribe"
-            name="unsubscribe"
+            title={t('form.tooltip.unsubscribe')}
             defaultValue={
               localStorage.get(UNSUBSCRIBE_KEY) ||
               t('form.defaultValue.unsubscribe')
@@ -218,8 +212,7 @@ function Parameters() {
           {t('form.label.onlyBotrix')}
           <input
             type="checkbox"
-            id="onlyBotrix"
-            name="onlyBotrix"
+            title={t('form.tooltip.onlyBotrix')}
             defaultChecked={Boolean(localStorage.get(ONLY_BOTRIX_KEY))}
             ref={onlyBotrixRef}
           />
@@ -237,8 +230,7 @@ function Parameters() {
           {t('form.label.usernamePattern')}
           <input
             type="text"
-            id="uPattern"
-            name="uPattern"
+            title={t('form.tooltip.usernamePattern')}
             defaultValue={
               localStorage.get(USERNAME_PATTERN_KEY) || USERNAME_PATTERN_DEFAULT
             }
@@ -248,8 +240,7 @@ function Parameters() {
           {t('form.label.botrixId')}
           <input
             type="number"
-            id="uPattern"
-            name="uPattern"
+            title={t('form.tooltip.idBotrix')}
             defaultValue={localStorage.get(BOTRIX_ID_KEY) || BOTRIX_DEFAULT_ID}
             disabled={!advancedEnabled}
             ref={botrixIdRef}
