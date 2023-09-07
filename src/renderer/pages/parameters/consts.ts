@@ -9,5 +9,5 @@ export const BOTRIX_ID_KEY = 'botrixId';
 
 export const BOTRIX_DEFAULT_ID = 1160406;
 // eslint-disable-next-line
-export const USERNAME_PATTERN_DEFAULT = '@(\w+)';
+export const USERNAME_PATTERN_DEFAULT = '@(\\w+)';
 export const LANGUAGE_DEFAULT = 'en';
