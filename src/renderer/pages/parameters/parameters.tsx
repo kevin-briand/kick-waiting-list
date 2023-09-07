@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React, { FormEvent, useRef } from 'react';
+import React, { FormEvent, useRef, useState } from 'react';
 import i18n from 'i18next';
 import { useTranslation } from 'react-i18next';
 import Container from '../../components/Container';
@@ -40,17 +40,18 @@ const InlineBox = styled.div`
   justify-content: space-between;
   white-space: nowrap;
   gap: 5px;
+  max-width: 600px;
 `;
 
-const H3 = styled.h3`
-  display: flex;
-  justify-content: center;
-  border-bottom: 1px solid gray;
-  max-width: 600px;
-  margin: 10px auto;
-`;
+const H3 = styled.h3``;
 
 const BoutonBox = styled(InlineBox)`
+  justify-content: center;
+`;
+
+const TitleBox = styled(InlineBox)`
+  margin: 10px auto;
+  border-bottom: 1px solid gray;
   justify-content: center;
 `;
 
@@ -65,6 +66,8 @@ function Parameters() {
   const onlyBotrixRef = useRef<HTMLInputElement>(null);
   const usernamePatternRef = useRef<HTMLInputElement>(null);
   const botrixIdRef = useRef<HTMLInputElement>(null);
+  const enAdvancedRef = useRef<HTMLInputElement>(null);
+  const [advancedEnabled, setAdvancedEnabled] = useState<boolean>(false);
   const setAlertError = useAlertError();
   const setAlertInfo = useAlertInfo();
 
@@ -130,10 +133,19 @@ function Parameters() {
     setAlertInfo('form.saved');
   };
 
+  const handleAdvanced = () => {
+    if (!enAdvancedRef.current) {
+      return;
+    }
+    setAdvancedEnabled(!advancedEnabled);
+  };
+
   return (
     <Container>
       <form onSubmit={handleForm}>
-        <H3>{t('form.label.language')}</H3>
+        <TitleBox>
+          <H3>{t('form.label.language')}</H3>
+        </TitleBox>
         <Grid>
           {t('form.label.language')}
           <select
@@ -150,7 +162,9 @@ function Parameters() {
             ))}
           </select>
         </Grid>
-        <H3>{t('form.label.userInfo')}</H3>
+        <TitleBox>
+          <H3>{t('form.label.userInfo')}</H3>
+        </TitleBox>
         <Grid>
           {t('form.label.username')}
           <input
@@ -166,6 +180,7 @@ function Parameters() {
               type="number"
               id="chatId"
               name="chatId"
+              disabled={!advancedEnabled}
               ref={chatRef}
               defaultValue={localStorage.get(CHAT_ID_KEY) || ''}
             />
@@ -174,7 +189,9 @@ function Parameters() {
             </Button>
           </InlineBox>
         </Grid>
-        <H3>{t('form.label.messagePattern')}</H3>
+        <TitleBox>
+          <H3>{t('form.label.messagePattern')}</H3>
+        </TitleBox>
         <Grid>
           {t('form.label.subscribe')}
           <input
@@ -207,7 +224,15 @@ function Parameters() {
             ref={onlyBotrixRef}
           />
         </Grid>
-        <H3>{t('form.label.advanced')}</H3>
+        <TitleBox>
+          <input
+            type="checkbox"
+            onChange={handleAdvanced}
+            ref={enAdvancedRef}
+            checked={advancedEnabled}
+          />
+          <H3 onClick={handleAdvanced}>{t('form.label.advanced')}</H3>
+        </TitleBox>
         <Grid>
           {t('form.label.usernamePattern')}
           <input
@@ -217,6 +242,7 @@ function Parameters() {
             defaultValue={
               localStorage.get(USERNAME_PATTERN_KEY) || USERNAME_PATTERN_DEFAULT
             }
+            disabled={!advancedEnabled}
             ref={usernamePatternRef}
           />
           {t('form.label.botrixId')}
@@ -225,6 +251,7 @@ function Parameters() {
             id="uPattern"
             name="uPattern"
             defaultValue={localStorage.get(BOTRIX_ID_KEY) || BOTRIX_DEFAULT_ID}
+            disabled={!advancedEnabled}
             ref={botrixIdRef}
           />
         </Grid>
