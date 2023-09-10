@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
-import ButtonCancel from '../../components/button/ButtonCancel';
-import ConfirmModal from '../../components/modal/ConfirmModal';
+import ButtonCancel from '../../../../components/button/ButtonCancel';
+import ConfirmModal from '../../../../components/modal/ConfirmModal';
 
 const ButtonBox = styled.div`
   display: flex;
   justify-content: center;
   margin: 10px 0;
+  gap: 10px;
 `;
 
 type WaitingListHeaderProps = {

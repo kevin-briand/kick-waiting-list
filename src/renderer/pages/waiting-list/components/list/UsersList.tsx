@@ -1,31 +1,38 @@
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { UserDto } from './dto/user.dto';
-import { UserRow } from './UserRow';
+import { Row } from './Row';
 
 const StyledList = styled.ul`
   display: flex;
   flex-direction: column;
   margin: 5px auto;
-  max-width: 600px;
+  width: 100%;
+`;
+
+const EmptyList = styled.div`
+  text-align: center;
 `;
 
 type ListProps = {
   users: UserDto[];
-  handleDelete: (username: UserDto) => void;
+  handleDelete?: (username: string) => void;
 };
 
 function UsersList({ users, handleDelete }: ListProps) {
+  const { t } = useTranslation('translation');
   return (
     <StyledList>
       {users.map((user) => {
         return (
-          <UserRow
+          <Row
             key={user.username}
-            user={user}
+            name={user.username ?? ''}
             handleDelete={handleDelete}
           />
         );
       })}
+      {users.length === 0 ? <EmptyList>{t('emptyList')}</EmptyList> : null}
     </StyledList>
   );
 }

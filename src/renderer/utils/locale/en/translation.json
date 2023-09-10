@@ -1,5 +1,6 @@
 {
   "title": "Waiting list Kick",
+  "emptyList": "Empty list",
   "ws": {
     "connected": "Connected to server, waiting for chat subscription !",
     "subscribed": "Connected to the chat !"
@@ -14,7 +15,10 @@
     "back": "Back",
     "clearList": "Clear list",
     "accept": "Yes",
-    "decline": "No"
+    "decline": "No",
+    "randomDraw": "Random draw",
+    "waitingList": "Waiting list",
+    "draw": "Draw"
   },
   "confirm": {
     "clearList": {
@@ -32,6 +36,7 @@
     "successGetChannelId": "Getting Chat ID successfully !",
     "failGetChannelId": "Fail to get channel ID, your username is good ?",
     "saved": "Datas saved !",
+    "limit": "Limit",
     "defaultValue": {
       "subscribe": "Your ticket has been purchased",
       "unsubscribe": "!quit"

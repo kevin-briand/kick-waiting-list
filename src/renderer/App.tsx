@@ -7,10 +7,16 @@ import AlertMessage from './components/alert-message/AlertMessage';
 import { AlertDto } from './components/alert-message/dto/alert-dto';
 import AlertType from './components/alert-message/dto/alert-type';
 import { AlertMessageContext } from './components/alert-message/AlertMessageContext';
-import WaitingList from './pages/waiting-list/WaitingList';
+import { USERS_LIST_KEY } from './pages/waiting-list/components/waiting-list/WaitingList';
 import Parameters from './pages/parameters/parameters';
 import LocalStorage from './utils/local-storage/local-storage';
 import { LANGUAGE_KEY } from './pages/parameters/consts';
+import WaitingListPage from './pages/waiting-list/WaitingListPage';
+import { DRAW_LIST_KEY } from './pages/waiting-list/components/random-draw/RandomDrawList';
+
+const localStorage = new LocalStorage();
+localStorage.remove(USERS_LIST_KEY);
+localStorage.remove(DRAW_LIST_KEY);
 
 export default function App() {
   const [alertMessage, setAlertMessage] = useState<AlertDto>({
@@ -23,7 +29,6 @@ export default function App() {
   }, [alertMessage, setAlertMessage]);
 
   useLayoutEffect(() => {
-    const localStorage = new LocalStorage();
     i18n.changeLanguage(localStorage.get(LANGUAGE_KEY) || 'en');
   }, []);
 
@@ -32,7 +37,7 @@ export default function App() {
       <AlertMessage />
       <Router>
         <Routes>
-          <Route path="/" element={<WaitingList />} />
+          <Route path="/" element={<WaitingListPage />} />
           <Route path="/parameters" element={<Parameters />} />
         </Routes>
       </Router>

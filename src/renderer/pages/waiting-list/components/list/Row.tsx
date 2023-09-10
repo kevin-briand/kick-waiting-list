@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { UserDto } from './dto/user.dto';
-import ButtonCancel from '../../../components/button/ButtonCancel';
+import ButtonCancel from '../../../../components/button/ButtonCancel';
 
-const Row = styled.li`
+const StyledRow = styled.li`
   display: flex;
   justify-content: space-between;
   margin: 2px 5px;
@@ -22,19 +21,21 @@ const ButtonDelete = styled(ButtonCancel)`
 `;
 
 export type listItemProps = {
-  user: UserDto;
-  handleDelete: (user: UserDto) => void;
+  name: string;
+  handleDelete?: (name: string) => void;
 };
 
-export function UserRow({ user, handleDelete }: listItemProps) {
+export function Row({ name, handleDelete }: listItemProps) {
   const { t } = useTranslation('translation');
 
   return (
-    <Row>
-      <Username>{user.username}</Username>
-      <ButtonDelete onClick={() => handleDelete(user)}>
-        {t('button.delete')}
-      </ButtonDelete>
-    </Row>
+    <StyledRow>
+      <Username>{name}</Username>
+      {handleDelete ? (
+        <ButtonDelete onClick={() => handleDelete(name)}>
+          {t('button.delete')}
+        </ButtonDelete>
+      ) : null}
+    </StyledRow>
   );
 }

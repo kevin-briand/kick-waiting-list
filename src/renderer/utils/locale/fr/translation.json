@@ -1,5 +1,6 @@
 {
   "title": "Liste d'attente Kick",
+  "emptyList": "Liste vide",
   "ws": {
     "connected": "Connecté au serveur, en attente de la souscription !",
     "subscribed": "Connecté au chat !"
@@ -14,7 +15,10 @@
     "back": "Retour",
     "clearList": "Effacer liste",
     "accept": "Oui",
-    "decline": "Non"
+    "decline": "Non",
+    "randomDraw": "Tirer au sort",
+    "waitingList": "Liste d'attente",
+    "draw": "Tirer"
   },
   "confirm": {
     "clearList": {
@@ -32,6 +36,7 @@
     "successGetChannelId": "Récupération de l'ID du chat réussi !",
     "failGetChannelId": "Echec de récupération de l'ID du chat, votre nom d'utilisateur est bon ?",
     "saved": "Données sauvegardées !",
+    "limit": "Limite",
     "defaultValue": {
       "subscribe": "Ton ticket est acheté",
       "unsubscribe": "!partir"
