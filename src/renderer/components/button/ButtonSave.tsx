@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import Button from './Button';
 
 const ButtonSave = styled(Button)`
-  background-color: green;
+  background-color: ${(props) => props.theme.button.success.base};
   &:active {
-    background-color: darkgreen;
+    background-color: ${(props) => props.theme.button.success.active};
   }
 `;
 

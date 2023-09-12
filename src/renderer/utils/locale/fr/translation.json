@@ -42,7 +42,9 @@
       "unsubscribe": "!partir"
     },
     "label": {
-      "language": "Langage",
+      "general": "Général",
+      "language": "langage",
+      "theme": "Thème",
       "userInfo": "Info utilisateur",
       "username": "Nom d'utilisateur Kick",
       "chatId": "ID chat",

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React, { FormEvent, useRef, useState } from 'react';
+import React, { FormEvent, useContext, useRef, useState } from 'react';
 import i18n from 'i18next';
 import { useTranslation } from 'react-i18next';
 import Container from '../../components/Container';
@@ -13,6 +13,7 @@ import {
   LANGUAGE_KEY,
   ONLY_BOTRIX_KEY,
   SUBSCRIBE_KEY,
+  THEME_KEY,
   UNSUBSCRIBE_KEY,
   USERNAME_KEY,
   USERNAME_PATTERN_DEFAULT,
@@ -23,6 +24,8 @@ import useAlertInfo from '../../hook/useAlertInfo';
 import AVAILABLE_LANGUAGES from '../../utils/locale/available_languages';
 import Button from '../../components/button/Button';
 import ButtonSave from '../../components/button/ButtonSave';
+import Theme from '../../themes/enum/theme';
+import themeContext from '../../themes/theme-context';
 
 const Grid = styled.div`
   display: grid;
@@ -66,8 +69,10 @@ function Parameters() {
   const onlyBotrixRef = useRef<HTMLInputElement>(null);
   const usernamePatternRef = useRef<HTMLInputElement>(null);
   const botrixIdRef = useRef<HTMLInputElement>(null);
+  const themeRef = useRef<HTMLSelectElement>(null);
   const enAdvancedRef = useRef<HTMLInputElement>(null);
   const [advancedEnabled, setAdvancedEnabled] = useState<boolean>(false);
+  const theme = useContext(themeContext);
   const setAlertError = useAlertError();
   const setAlertInfo = useAlertInfo();
 
@@ -80,7 +85,8 @@ function Parameters() {
       unsubscribeRef.current?.value &&
       subscribeRef.current?.value !== unsubscribeRef.current?.value &&
       usernamePatternRef.current?.value &&
-      botrixIdRef.current?.value
+      botrixIdRef.current?.value &&
+      themeRef.current?.value
     );
   };
 
@@ -115,6 +121,7 @@ function Parameters() {
     const onlyBotrix = onlyBotrixRef.current?.checked ? 'true' : '';
     const usernamePattern = usernamePatternRef.current?.value || '';
     const botrixId = botrixIdRef.current?.value || '';
+    const themeSelected = themeRef.current?.value || Theme.LIGHT.toString();
 
     if (
       !localStorage.has(LANGUAGE_KEY) ||
@@ -130,6 +137,7 @@ function Parameters() {
     localStorage.set(ONLY_BOTRIX_KEY, onlyBotrix);
     localStorage.set(USERNAME_PATTERN_KEY, usernamePattern);
     localStorage.set(BOTRIX_ID_KEY, botrixId);
+    localStorage.set(THEME_KEY, themeSelected);
     setAlertInfo('form.saved');
   };
 
@@ -144,13 +152,13 @@ function Parameters() {
     <Container>
       <form onSubmit={handleForm}>
         <TitleBox>
-          <H3>{t('form.label.language')}</H3>
+          <H3>{t('form.label.general')}</H3>
         </TitleBox>
         <Grid>
           {t('form.label.language')}
           <select
             ref={languageRef}
-            defaultValue={localStorage.get(LANGUAGE_KEY) || LANGUAGE_DEFAULT}
+            defaultValue={localStorage.get(LANGUAGE_KEY) ?? LANGUAGE_DEFAULT}
             onChange={(event) => i18n.changeLanguage(event.target.value)}
           >
             {AVAILABLE_LANGUAGES.map((language) => (
@@ -158,6 +166,28 @@ function Parameters() {
                 {language.name}
               </option>
             ))}
+          </select>
+          {t('form.label.theme')}
+          <select
+            ref={themeRef}
+            defaultValue={localStorage.get(THEME_KEY) ?? Theme.LIGHT.toString()}
+            onChange={(event) => {
+              const selectedValue = Number.parseInt(event.target.value, 10);
+              if (!Number.isNaN(selectedValue) && selectedValue in Theme) {
+                theme?.changeTheme(selectedValue);
+              }
+            }}
+          >
+            {Object.entries(Theme).map(([key, value]) => {
+              if (Number.isNaN(Number.parseInt(key, 10))) {
+                return (
+                  <option key={value} value={value.toString()}>
+                    {key.toLowerCase()}
+                  </option>
+                );
+              }
+              return null;
+            })}
           </select>
         </Grid>
         <TitleBox>

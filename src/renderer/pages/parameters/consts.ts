@@ -6,6 +6,7 @@ export const UNSUBSCRIBE_KEY = 'unsubscribe';
 export const ONLY_BOTRIX_KEY = 'onlyBotrix';
 export const USERNAME_PATTERN_KEY = 'usernamePattern';
 export const BOTRIX_ID_KEY = 'botrixId';
+export const THEME_KEY = 'theme';
 
 export const BOTRIX_DEFAULT_ID = 1160406;
 // eslint-disable-next-line

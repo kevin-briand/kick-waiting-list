@@ -42,7 +42,9 @@
       "unsubscribe": "!quit"
     },
     "label": {
-      "language": "Language",
+      "general": "General",
+      "language": "language",
+      "theme": "Theme",
       "userInfo": "User info",
       "username": "Kick username",
       "chatId": "Chat ID",
