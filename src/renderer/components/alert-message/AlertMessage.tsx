@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 import { AlertMessageContext } from './AlertMessageContext';
 import { AlertMessageDto } from './dto/alert-message-dto';
 import AlertType from './dto/alert-type';
@@ -15,7 +15,7 @@ const SnackBar = styled.div`
   left: 0;
   bottom: 0;
   text-align: center;
-  background-color: ${(props) => props.color || 'green'};
+  background-color: ${(props) => props.color || props.theme.button.error.base};
   color: white;
 `;
 
@@ -26,6 +26,7 @@ const TIMEOUT_DELAY = 6000;
 function AlertMessage() {
   const { alertMessage, setAlertMessage } =
     useContext<AlertMessageDto>(AlertMessageContext);
+  const theme = useTheme();
 
   useEffect(() => {
     if (alertMessage.message === '') {
@@ -39,7 +40,11 @@ function AlertMessage() {
 
   return alertMessage.message ? (
     <SnackBar
-      color={alertMessage.type === AlertType.ERROR ? 'darkred' : 'darkgreen'}
+      color={
+        alertMessage.type === AlertType.SUCCESS
+          ? theme.button.success.base
+          : theme.button.error.base
+      }
     >
       {alertMessage.message}
     </SnackBar>

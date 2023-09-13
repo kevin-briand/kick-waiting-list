@@ -6,7 +6,7 @@ import { Row } from './Row';
 const StyledList = styled.ul`
   display: flex;
   flex-direction: column;
-  margin: 5px auto;
+  margin: 5px 0;
   width: 100%;
 `;
 

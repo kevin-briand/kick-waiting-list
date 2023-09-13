@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import Button from './Button';
 
 const ButtonCancel = styled(Button)`
-  background-color: #e33;
+  background-color: ${(props) => props.theme.button.error.base};
   &:active {
-    background-color: darkred;
+    background-color: ${(props) => props.theme.button.error.active};
   }
 `;
 

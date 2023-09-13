@@ -15,13 +15,13 @@ const FixedContainer = styled.div`
   width: 100%;
 `;
 
-// const testList: UserDto[] = [];
-// for (let i = 0; i < 20; i += 1) {
+const testList: UserDto[] = [];
+// for (let i = 0; i < 50; i += 1) {
 //   testList.push({ username: `username${i}` });
 // }
 function WaitingListPage() {
   const [selectedTab, setSelectedTab] = useState<Tabs>(Tabs.WAITING_LIST);
-  const [usersList, setUsersList] = useState<UserDto[]>([]);
+  const [usersList, setUsersList] = useState<UserDto[]>(testList);
 
   const changeTab = (tab: Tabs) => {
     setSelectedTab(tab);

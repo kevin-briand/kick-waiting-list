@@ -2,21 +2,21 @@ import styled from 'styled-components';
 import { ReactNode } from 'react';
 
 const StyledButtonTab = styled.button`
-  color: dodgerblue;
+  color: ${(props) => props.theme.button.default.base};
   flex-grow: 1;
   max-width: 50%;
   background: none;
   border: none;
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid ${(props) => props.theme.primary};
   padding: 5px 0;
   font-size: 1em;
   font-weight: bold;
   &:hover {
-    text-shadow: 0 0 1px black;
+    text-shadow: 0 0 1px ${(props) => props.theme.tertiary};
   }
   &:active,
   &.active {
-    border-bottom: 2px solid cornflowerblue;
+    border-bottom: 2px solid ${(props) => props.theme.button.default.base};
   }
 `;
 
