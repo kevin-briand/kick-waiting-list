@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 import { AlertMessageContext } from './AlertMessageContext';
 import { AlertMessageDto } from './dto/alert-message-dto';
 import AlertType from './dto/alert-type';
