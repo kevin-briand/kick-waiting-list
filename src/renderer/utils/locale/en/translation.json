@@ -30,7 +30,7 @@
     "channelId": "The chat ID is not filled in"
   },
   "form": {
-    "emptyField": "You should provide all fields !",
+    "emptyField": "The field {{field}} is empty !",
     "emptyUsername": "You should provide username for get chat id",
     "getChannelId": "Try to get channel id...",
     "successGetChannelId": "Getting Chat ID successfully !",

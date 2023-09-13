@@ -45,9 +45,8 @@ function AlertMessage() {
           ? theme.button.success.base
           : theme.button.error.base
       }
-    >
-      {alertMessage.message}
-    </SnackBar>
+      dangerouslySetInnerHTML={{ __html: alertMessage.message }}
+    />
   ) : null;
 }
 
