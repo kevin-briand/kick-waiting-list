@@ -56,7 +56,10 @@
       "advanced": "Avancé",
       "usernamePattern": "Modèle du nom d'utilisateur",
       "botrixId": "ID Botrix",
-      "save": "Enregistrer"
+      "save": "Enregistrer",
+      "obs": "OBS",
+      "activateObsApi": "Activer le point d'entrée du flux",
+      "port": "Port"
     },
     "tooltip": {
       "username": "Saisissez votre nom d'utilisateur Kick puis cliquez sur le bouton '$t(form.label.getChatId)' pour obtenir votre ID de chat",
@@ -65,7 +68,9 @@
       "unsubscribe": "Entrez un texte ou la commande que l'application va écouter. chaque fois que ce texte sera écrit dans le chat, l'utilisateur l'ayant saisi sera retiré de la liste. Vous pouvez placer plusieurs commandes séparées par un ;",
       "onlyBotrix": "Cocher cette case pour n'autoriser que Botrix à inscrire des utilisateurs à la liste. Cela vous permet de filtrer les inscriptions, seulement les abonnés ou passer par un achat dans la boutique de Botrix par exemple. Note: Si vous passez par Botrix pour l'inscription le message que Botrix écrira dans le chat doit impérativement contenir le nom de l'utilisateur sous forme @username.",
       "usernamePattern": "Ceci est le modèle pour récupérer le nom d'utilisateur lorsque l'abonnement avec Botrix est activé. Cela doit être un Regexp",
-      "idBotrix": "L'id de Botrix sur Kick, nécessaire si vous activez l'abonnement par Botrix."
+      "idBotrix": "L'id de Botrix sur Kick, nécessaire si vous activez l'abonnement par Botrix.",
+      "activateObsApi": "En cochant cette option vous pourrez afficher la liste d'attente directement dans votre stream.",
+      "port": "Port d'accès au flux, à changer en cas de conflit avec une autre application."
     }
   }
 }

@@ -11,7 +11,13 @@ import { AlertMessageContext } from './components/alert-message/AlertMessageCont
 import { USERS_LIST_KEY } from './pages/waiting-list/components/waiting-list/WaitingList';
 import ParameterPage from './pages/parameters/parameterPage';
 import LocalStorage from './utils/local-storage/local-storage';
-import { LANGUAGE_KEY, THEME_KEY } from './pages/parameters/consts';
+import {
+  API_KEY,
+  LANGUAGE_DEFAULT,
+  LANGUAGE_KEY,
+  PORT_KEY,
+  THEME_KEY,
+} from './pages/parameters/consts';
 import WaitingListPage from './pages/waiting-list/WaitingListPage';
 import { DRAW_LIST_KEY } from './pages/waiting-list/components/random-draw/RandomDrawList';
 import Theme from './themes/enum/theme';
@@ -21,6 +27,14 @@ import ThemeContext from './themes/theme-context';
 const localStorage = new LocalStorage();
 localStorage.remove(USERS_LIST_KEY);
 localStorage.remove(DRAW_LIST_KEY);
+
+if (localStorage.has(API_KEY)) {
+  const apiStatus = localStorage.get(API_KEY) ? 'start' : 'stop';
+  window.electron.ipcRenderer.sendMessage(API_KEY, {
+    status: apiStatus,
+    port: Number.parseInt(localStorage.get(PORT_KEY), 10),
+  });
+}
 
 export default function App() {
   const [alertMessage, setAlertMessage] = useState<AlertDto>({
@@ -43,7 +57,7 @@ export default function App() {
   }, [changeTheme]);
 
   useLayoutEffect(() => {
-    i18n.changeLanguage(localStorage.get(LANGUAGE_KEY) || 'en');
+    i18n.changeLanguage(localStorage.get(LANGUAGE_KEY) || LANGUAGE_DEFAULT);
   }, []);
 
   return (

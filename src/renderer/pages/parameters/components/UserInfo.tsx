@@ -6,6 +6,7 @@ import React, {
   useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
+import styled from 'styled-components';
 import { CHAT_ID_KEY, USERNAME_KEY } from '../consts';
 import LocalStorage from '../../../utils/local-storage/local-storage';
 import useAlertInfo from '../../../hook/useAlertInfo';
@@ -24,6 +25,10 @@ type UserInfoProps = {
   advancedEnabled: boolean;
   datasSaved: () => void;
 };
+
+const ChatIdInput = styled(Input)`
+  flex-grow: 1;
+`;
 
 function UserInfo({ save, advancedEnabled, datasSaved }: UserInfoProps) {
   const localStorage = useMemo(() => new LocalStorage(), []);
@@ -90,7 +95,7 @@ function UserInfo({ save, advancedEnabled, datasSaved }: UserInfoProps) {
         />
         {t('form.label.chatId')}
         <FixedWidthFlexBox>
-          <Input
+          <ChatIdInput
             type="number"
             disabled={!advancedEnabled}
             title={t('form.tooltip.chatId')}

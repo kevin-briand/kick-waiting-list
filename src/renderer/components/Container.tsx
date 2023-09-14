@@ -12,6 +12,15 @@ const StyledContainer = styled.div`
   overflow: scroll;
 `;
 
+const FixedContainer = styled.div`
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 10px;
+`;
+
 type ContainerProps = {
   children: React.ReactNode;
 };
@@ -20,7 +29,7 @@ function Container({ children }: ContainerProps) {
   return (
     <StyledContainer>
       <Header />
-      {children}
+      <FixedContainer>{children}</FixedContainer>
     </StyledContainer>
   );
 }

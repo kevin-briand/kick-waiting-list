@@ -14,6 +14,8 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
+import Api from '../api/api';
+import { API_KEY } from '../renderer/pages/parameters/consts';
 
 class AppUpdater {
   constructor() {
@@ -25,29 +27,31 @@ class AppUpdater {
 
 let mainWindow: BrowserWindow | null = null;
 
-ipcMain.on('ipc-example', async (event, arg) => {
-  const msgTemplate = (pingPong: string) => `IPC test: ${pingPong}`;
-  console.log(msgTemplate(arg));
-  event.reply('ipc-example', msgTemplate('pong'));
+const api = new Api();
+ipcMain.on(API_KEY, async (event, args) => {
+  api.stop();
+  if (args.status === 'start') {
+    api.start(args.port);
+  } else {
+    api.stop();
+  }
+  event.reply(API_KEY, 'OK');
 });
 
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');
   sourceMapSupport.install();
 }
-
 const isDebug =
   process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true';
 
 if (isDebug) {
   require('electron-debug')();
 }
-
 const installExtensions = async () => {
   const installer = require('electron-devtools-installer');
   const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
   const extensions = ['REACT_DEVELOPER_TOOLS'];
-
   return installer
     .default(
       extensions.map((name) => installer[name]),
@@ -55,12 +59,10 @@ const installExtensions = async () => {
     )
     .catch(console.log);
 };
-
 const createWindow = async () => {
   if (isDebug) {
     await installExtensions();
   }
-
   const RESOURCES_PATH = app.isPackaged
     ? path.join(process.resourcesPath, 'assets')
     : path.join(__dirname, '../../assets');
@@ -68,7 +70,6 @@ const createWindow = async () => {
   const getAssetPath = (...paths: string[]): string => {
     return path.join(RESOURCES_PATH, ...paths);
   };
-
   mainWindow = new BrowserWindow({
     show: false,
     width: 500,
@@ -99,19 +100,19 @@ const createWindow = async () => {
   });
 
   const menuBuilder = new MenuBuilder(mainWindow);
-  menuBuilder.buildMenu();
 
+  menuBuilder.buildMenu();
   // Open urls in the user's browser
+
   mainWindow.webContents.setWindowOpenHandler((edata) => {
     shell.openExternal(edata.url);
     return { action: 'deny' };
   });
-
   // Remove this if your app does not use auto updates
+
   // eslint-disable-next-line
   new AppUpdater();
 };
-
 /**
  * Add event listeners...
  */

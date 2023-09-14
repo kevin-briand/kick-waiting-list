@@ -1,19 +1,10 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { UserDto } from './components/list/dto/user.dto';
 import Container from '../../components/Container';
 import WaitingListPageHeader from './WaitingListPageHeader';
 import RandomDrawList from './components/random-draw/RandomDrawList';
 import WaitingList from './components/waiting-list/WaitingList';
 import { Tabs } from './enum/tabs';
-
-const FixedContainer = styled.div`
-  max-width: 600px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-`;
 
 const testList: UserDto[] = [];
 // for (let i = 0; i < 50; i += 1) {
@@ -36,10 +27,8 @@ function WaitingListPage() {
 
   return (
     <Container>
-      <FixedContainer>
-        <WaitingListPageHeader changeTab={changeTab} currentTab={selectedTab} />
-        {getListComponent()}
-      </FixedContainer>
+      <WaitingListPageHeader changeTab={changeTab} currentTab={selectedTab} />
+      {getListComponent()}
     </Container>
   );
 }

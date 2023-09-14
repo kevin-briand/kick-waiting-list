@@ -5,7 +5,6 @@ const FixedWidthFlexBox = styled.div`
   justify-content: space-between;
   white-space: nowrap;
   gap: 5px;
-  max-width: 600px;
 `;
 
 export default FixedWidthFlexBox;

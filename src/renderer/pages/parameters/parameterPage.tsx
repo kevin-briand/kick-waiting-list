@@ -9,6 +9,7 @@ import UserInfo from './components/UserInfo';
 import MessagePattern from './components/MessagePattern';
 import Advanced from './components/Advanced';
 import FixedWidthFlexBox from './components/components/FixedWidthFlexBox';
+import Obs from './components/obs';
 
 const BoutonBox = styled(FixedWidthFlexBox)`
   justify-content: center;
@@ -32,7 +33,7 @@ function ParameterPage() {
   };
 
   useEffect(() => {
-    if (saveCounter === 4) {
+    if (saveCounter === 5) {
       setSaveCounter(0);
       setAlertInfo('form.saved');
     }
@@ -48,6 +49,7 @@ function ParameterPage() {
           datasSaved={datasSaved}
         />
         <MessagePattern save={save} datasSaved={datasSaved} />
+        <Obs save={save} datasSaved={datasSaved} />
         <Advanced
           save={save}
           advancedEnabled={advancedEnabled}
