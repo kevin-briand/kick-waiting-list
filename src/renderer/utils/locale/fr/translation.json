@@ -30,7 +30,7 @@
     "channelId": "L'ID du chat n'est pas renseigné"
   },
   "form": {
-    "emptyField": "Vous devez remplir tous les champs !",
+    "emptyField": "Le champ {{field}} est vide !",
     "emptyUsername": "Vous devez saisir votre nom d'utilisateur",
     "getChannelId": "Tentative de récupération de l'ID du chat...",
     "successGetChannelId": "Récupération de l'ID du chat réussi !",

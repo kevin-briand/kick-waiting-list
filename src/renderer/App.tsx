@@ -9,7 +9,7 @@ import { AlertDto } from './components/alert-message/dto/alert-dto';
 import AlertType from './components/alert-message/dto/alert-type';
 import { AlertMessageContext } from './components/alert-message/AlertMessageContext';
 import { USERS_LIST_KEY } from './pages/waiting-list/components/waiting-list/WaitingList';
-import Parameters from './pages/parameters/parameters';
+import ParameterPage from './pages/parameters/parameterPage';
 import LocalStorage from './utils/local-storage/local-storage';
 import { LANGUAGE_KEY, THEME_KEY } from './pages/parameters/consts';
 import WaitingListPage from './pages/waiting-list/WaitingListPage';
@@ -54,7 +54,7 @@ export default function App() {
           <Router>
             <Routes>
               <Route path="/" element={<WaitingListPage />} />
-              <Route path="/parameters" element={<Parameters />} />
+              <Route path="/parameters" element={<ParameterPage />} />
             </Routes>
           </Router>
         </AlertMessageContext.Provider>
