@@ -17,6 +17,8 @@ import Grid from './components/Grid';
 import TitleBox from './components/TitleBox';
 import H3 from './components/H3';
 import useValidForm from '../../../hook/useValidForm';
+import Select from '../../../components/select/Select';
+import Option from '../../../components/select/Option';
 
 type GeneralProps = {
   save?: number;
@@ -62,19 +64,19 @@ function General({ save, datasSaved }: GeneralProps) {
       </TitleBox>
       <Grid>
         {t('form.label.language')}
-        <select
+        <Select
           ref={languageRef}
           defaultValue={localStorage.get(LANGUAGE_KEY) ?? LANGUAGE_DEFAULT}
           onChange={(event) => i18n.changeLanguage(event.target.value)}
         >
           {AVAILABLE_LANGUAGES.map((language) => (
-            <option key={language.value} value={language.value}>
+            <Option key={language.value} value={language.value}>
               {language.name}
-            </option>
+            </Option>
           ))}
-        </select>
+        </Select>
         {t('form.label.theme')}
-        <select
+        <Select
           ref={themeRef}
           defaultValue={localStorage.get(THEME_KEY) ?? Theme.LIGHT.toString()}
           onChange={(event) => {
@@ -87,14 +89,14 @@ function General({ save, datasSaved }: GeneralProps) {
           {Object.entries(Theme).map(([key, value]) => {
             if (Number.isNaN(Number.parseInt(key, 10))) {
               return (
-                <option key={value} value={value.toString()}>
+                <Option key={value} value={value.toString()}>
                   {key.toLowerCase()}
-                </option>
+                </Option>
               );
             }
             return null;
           })}
-        </select>
+        </Select>
       </Grid>
     </>
   );

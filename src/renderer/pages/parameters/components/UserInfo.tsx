@@ -17,6 +17,7 @@ import FixedWidthFlexBox from './components/FixedWidthFlexBox';
 import TitleBox from './components/TitleBox';
 import H3 from './components/H3';
 import useValidForm from '../../../hook/useValidForm';
+import Input from '../../../components/input/Input';
 
 type UserInfoProps = {
   save?: number;
@@ -81,7 +82,7 @@ function UserInfo({ save, advancedEnabled, datasSaved }: UserInfoProps) {
       </TitleBox>
       <Grid>
         {t('form.label.username')}
-        <input
+        <Input
           type="text"
           title={t('form.tooltip.username')}
           ref={usernameRef}
@@ -89,7 +90,7 @@ function UserInfo({ save, advancedEnabled, datasSaved }: UserInfoProps) {
         />
         {t('form.label.chatId')}
         <FixedWidthFlexBox>
-          <input
+          <Input
             type="number"
             disabled={!advancedEnabled}
             title={t('form.tooltip.chatId')}

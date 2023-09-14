@@ -17,6 +17,7 @@ import Grid from './components/Grid';
 import H3 from './components/H3';
 import useValidForm from '../../../hook/useValidForm';
 import TitleBox from './components/TitleBox';
+import Input from '../../../components/input/Input';
 
 type AdvancedProps = {
   save?: number;
@@ -44,7 +45,7 @@ function Advanced({
     if (!enAdvancedRef.current) {
       return;
     }
-    setAdvancedEnabled(enAdvancedRef.current.checked);
+    setAdvancedEnabled(!enAdvancedRef.current.checked);
   };
 
   const saveParameters = useCallback(() => {
@@ -78,9 +79,9 @@ function Advanced({
   return (
     <>
       <TitleBox>
-        <input
+        <Input
           type="checkbox"
-          onChange={handleAdvanced}
+          onChange={() => setAdvancedEnabled(enAdvancedRef.current!.checked)}
           ref={enAdvancedRef}
           checked={advancedEnabled}
         />
@@ -88,7 +89,7 @@ function Advanced({
       </TitleBox>
       <Grid>
         {t('form.label.usernamePattern')}
-        <input
+        <Input
           type="text"
           title={t('form.tooltip.usernamePattern')}
           defaultValue={
@@ -98,7 +99,7 @@ function Advanced({
           ref={usernamePatternRef}
         />
         {t('form.label.botrixId')}
-        <input
+        <Input
           type="number"
           title={t('form.tooltip.idBotrix')}
           defaultValue={localStorage.get(BOTRIX_ID_KEY) || BOTRIX_DEFAULT_ID}

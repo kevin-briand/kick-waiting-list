@@ -12,6 +12,7 @@ import Grid from './components/Grid';
 import TitleBox from './components/TitleBox';
 import H3 from './components/H3';
 import useValidForm from '../../../hook/useValidForm';
+import Input from '../../../components/input/Input';
 
 type MessagePatternProps = {
   save?: number;
@@ -62,7 +63,7 @@ function MessagePattern({ save, datasSaved }: MessagePatternProps) {
       </TitleBox>
       <Grid>
         {t('form.label.subscribe')}
-        <input
+        <Input
           type="text"
           title={t('form.tooltip.subscribe')}
           defaultValue={
@@ -71,7 +72,7 @@ function MessagePattern({ save, datasSaved }: MessagePatternProps) {
           ref={subscribeRef}
         />
         {t('form.label.unsubscribe')}
-        <input
+        <Input
           type="text"
           title={t('form.tooltip.unsubscribe')}
           defaultValue={
@@ -81,7 +82,7 @@ function MessagePattern({ save, datasSaved }: MessagePatternProps) {
           ref={unsubscribeRef}
         />
         {t('form.label.onlyBotrix')}
-        <input
+        <Input
           type="checkbox"
           title={t('form.tooltip.onlyBotrix')}
           defaultChecked={Boolean(localStorage.get(ONLY_BOTRIX_KEY))}

@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import React, { FormEvent, useRef } from 'react';
 import ButtonSave from '../../../../components/button/ButtonSave';
 import CenteredFlexBox from '../CenteredFlexBox';
+import Input from '../../../../components/input/Input';
 
 const Form = styled.form`
   display: flex;
@@ -30,7 +31,7 @@ function RandomDrawListHeader({ onClick }: RandomDrawListHeaderProps) {
     <CenteredFlexBox>
       <Form onSubmit={handleForm}>
         <Span>{t('form.limit')}</Span>
-        <input type="number" defaultValue={3} ref={limitRef} />
+        <Input type="number" defaultValue={3} ref={limitRef} />
         <ButtonSave>{t('button.draw')}</ButtonSave>
       </Form>
     </CenteredFlexBox>
