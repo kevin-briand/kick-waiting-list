@@ -12,6 +12,7 @@ const StyledList = styled.ul`
 
 const EmptyList = styled.div`
   text-align: center;
+  color: ${(props) => props.theme.colors.text.dark};
 `;
 
 type ListProps = {

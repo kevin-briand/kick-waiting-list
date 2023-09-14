@@ -1,15 +1,8 @@
-import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
 import ButtonCancel from '../../../../components/button/ButtonCancel';
 import ConfirmModal from '../../../../components/modal/ConfirmModal';
-
-const ButtonBox = styled.div`
-  display: flex;
-  justify-content: center;
-  margin: 10px 0;
-  gap: 10px;
-`;
+import CenteredFlexBox from '../CenteredFlexBox';
 
 type WaitingListHeaderProps = {
   handleClear: () => void;
@@ -30,7 +23,7 @@ function WaitingListHeader({ handleClear }: WaitingListHeaderProps) {
   };
 
   return (
-    <ButtonBox>
+    <CenteredFlexBox>
       <ButtonCancel onClick={handleClearList}>
         {t('button.clearList')}
       </ButtonCancel>
@@ -40,7 +33,7 @@ function WaitingListHeader({ handleClear }: WaitingListHeaderProps) {
         close={handleConfirmDialog}
         confirmMessage={t('confirm.clearList.content')}
       />
-    </ButtonBox>
+    </CenteredFlexBox>
   );
 }
 

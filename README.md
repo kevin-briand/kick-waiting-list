@@ -1,4 +1,4 @@
-<img src="src/renderer/img/kick-waiting-list-logo.png" width="800" alt="Kick waiting list logo">
+<img src="src/renderer/img/logo-no-background.svg" width="800" alt="Kick waiting list logo">
 
 Kick waiting list is an application that allow viewers to join a waiting list to play with the streamer.
 This application was originally created for the streamer [Ory_Gami](https://kick.com/ory-gami), If you like this application follow her.

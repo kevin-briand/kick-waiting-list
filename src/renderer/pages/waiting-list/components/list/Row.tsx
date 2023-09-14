@@ -5,12 +5,13 @@ import ButtonCancel from '../../../../components/button/ButtonCancel';
 const StyledRow = styled.li`
   display: flex;
   justify-content: space-between;
-  margin: 2px 5px;
+  margin: 5px 5px;
   border-radius: 2px;
-  box-shadow: 0 0 3px black;
+  box-shadow: 0 0 3px ${(props) => props.theme.colors.shadow};
 `;
 
 const Username = styled.div`
+  color: ${(props) => props.theme.colors.text.dark};
   padding: 5px 5px;
   font-size: 1.2em;
   font-family: 'Open Sans', serif;

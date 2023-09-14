@@ -15,8 +15,9 @@ const SnackBar = styled.div`
   left: 0;
   bottom: 0;
   text-align: center;
-  background-color: ${(props) => props.color || props.theme.button.error.base};
-  color: white;
+  background-color: ${(props) =>
+    props.color || props.theme.colors.buttons.default};
+  color: ${(props) => props.theme.colors.text.light};
 `;
 
 // eslint-disable-next-line no-undef
@@ -42,8 +43,8 @@ function AlertMessage() {
     <SnackBar
       color={
         alertMessage.type === AlertType.SUCCESS
-          ? theme.button.success.base
-          : theme.button.error.base
+          ? theme.colors.buttons.success
+          : theme.colors.buttons.error
       }
       dangerouslySetInnerHTML={{ __html: alertMessage.message }}
     />

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { ReactNode } from 'react';
+import H3 from '../../pages/parameters/components/components/H3';
 
 const Background = styled.div`
   position: absolute;
@@ -7,7 +8,7 @@ const Background = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(255, 255, 255, 0.75);
+  background-color: ${({ theme }) => theme.colors.backgroundModal};
 `;
 
 const Dialog = styled.div`
@@ -17,9 +18,10 @@ const Dialog = styled.div`
   width: 60%;
   padding: 10px;
   margin: auto;
-  box-shadow: 0 0 50px gray;
+  box-shadow: 0 0 50px ${(props) => props.theme.colors.shadow};
   border-radius: 5px;
-  background-color: white;
+  border: 1px solid ${(props) => props.theme.colors.border};
+  background-color: ${(props) => props.theme.colors.background.light};
 `;
 
 const Header = styled.div`
@@ -32,10 +34,12 @@ const CloseButton = styled.button`
   border: none;
   font-weight: bold;
   font-size: 1.2em;
+  color: ${(props) => props.theme.colors.text.dark};
 `;
 
 const Content = styled.div`
   padding: 5px;
+  color: ${(props) => props.theme.colors.text.dark};
 `;
 
 type ModalProps = {
@@ -51,7 +55,7 @@ function Modal({ title, open, close, children }: ModalProps) {
       <Background onClick={close} />
       <Dialog>
         <Header>
-          <h3>{title ?? ''}</h3>
+          <H3>{title ?? ''}</H3>
           <CloseButton onClick={close}>X</CloseButton>
         </Header>
         <Content>{children}</Content>

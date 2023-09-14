@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import logo from '../../img/kick-waiting-list-logo.png';
+import logo from '../../img/logo-no-background.svg';
 
 const StyledLogo = styled.img`
   width: 100px;

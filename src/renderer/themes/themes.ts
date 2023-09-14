@@ -1,49 +1,45 @@
 import ThemeDto from './dto/theme.dto';
 
 export const lightTheme: ThemeDto = {
-  primary: '#D2D6DC',
-  secondary: '#636365',
-  tertiary: '#97978D',
-  text: 'white',
-  button: {
-    default: {
-      base: '#669bbc',
-      hover: '#669bbc',
-      active: '#29335c',
+  colors: {
+    text: {
+      light: '#FFF',
+      dark: '#636365',
     },
-    success: {
-      base: '#8ea604',
-      hover: '#8ea604',
-      active: 'darkgreen',
+    header: '#636365',
+    border: '#000',
+    shadow: '#000',
+    backgroundModal: 'rgba(210, 214, 220, 0.3)',
+    buttons: {
+      default: '#669bbc',
+      error: '#f71735',
+      success: '#8ea604',
     },
-    error: {
-      base: '#f71735',
-      hover: '#f71735',
-      active: 'darkred',
+    background: {
+      light: '#D2D6DC',
+      dark: '#222',
     },
   },
 };
 
 export const darkTheme: ThemeDto = {
-  primary: '#2B2F35',
-  secondary: '#C1C1C3',
-  tertiary: '#69696C',
-  text: 'white',
-  button: {
-    default: {
-      base: '#669bbc',
-      hover: '#669bbc',
-      active: '#29335c',
+  colors: {
+    text: {
+      light: '#222',
+      dark: '#CCC',
     },
-    success: {
-      base: '#8ea604',
-      hover: '#8ea604',
-      active: 'darkgreen',
+    header: '#222',
+    border: '#97978D',
+    shadow: '#CCC',
+    backgroundModal: 'rgba(190, 194, 200, 0.3)',
+    buttons: {
+      default: '#4c7a99',
+      error: '#9a1023',
+      success: '#6d7f04',
     },
-    error: {
-      base: '#f71735',
-      hover: '#f71735',
-      active: 'darkred',
+    background: {
+      light: '#333',
+      dark: 'rgb(210, 214, 220)',
     },
   },
 };

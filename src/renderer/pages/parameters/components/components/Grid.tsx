@@ -9,6 +9,7 @@ const Grid = styled.div`
   margin: 0 auto;
   padding: 10px;
   font-size: 1em;
+  color: ${(props) => props.theme.colors.text.dark};
 `;
 
 export default Grid;

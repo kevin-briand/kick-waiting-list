@@ -3,13 +3,11 @@ import { useTranslation } from 'react-i18next';
 import Modal from './Modal';
 import ButtonSave from '../button/ButtonSave';
 import ButtonCancel from '../button/ButtonCancel';
+import CenteredFlexBox from '../../pages/waiting-list/components/CenteredFlexBox';
 
-const ButtonBox = styled.div`
-  margin-top: 5px;
-  display: flex;
+const ButtonBox = styled(CenteredFlexBox)`
   justify-content: right;
   padding-right: 10px;
-  gap: 10px;
 `;
 
 type ConfirmModalProps = {

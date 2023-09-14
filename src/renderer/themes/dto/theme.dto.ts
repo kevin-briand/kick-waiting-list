@@ -1,23 +1,21 @@
 type ThemeDto = {
-  primary: string;
-  secondary: string;
-  tertiary: string;
-  text: string;
-  button: {
-    default: {
-      base: string;
-      hover: string;
-      active: string;
+  colors: {
+    text: {
+      light: string;
+      dark: string;
     };
-    success: {
-      base: string;
-      hover: string;
-      active: string;
+    header: string;
+    border: string;
+    shadow: string;
+    backgroundModal: string;
+    buttons: {
+      default: string;
+      error: string;
+      success: string;
     };
-    error: {
-      base: string;
-      hover: string;
-      active: string;
+    background: {
+      light: string;
+      dark: string;
     };
   };
 };

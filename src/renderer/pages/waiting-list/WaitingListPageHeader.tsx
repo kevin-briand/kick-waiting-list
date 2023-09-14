@@ -1,19 +1,18 @@
-import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import React from 'react';
+import styled from 'styled-components';
 import ButtonTab from '../../components/button/ButtonTab';
 import { Tabs } from './enum/tabs';
-
-const ButtonBox = styled.div`
-  display: flex;
-  justify-content: center;
-  margin: 10px 0;
-`;
+import CenteredFlexBox from './components/CenteredFlexBox';
 
 type WaitingListPageHeaderProps = {
   currentTab: Tabs;
   changeTab: (tab: Tabs) => void;
 };
+
+const ButtonsBox = styled(CenteredFlexBox)`
+  gap: 0;
+`;
 
 function WaitingListPageHeader({
   currentTab,
@@ -22,7 +21,7 @@ function WaitingListPageHeader({
   const { t } = useTranslation('translation');
 
   return (
-    <ButtonBox>
+    <ButtonsBox>
       <ButtonTab
         handleClick={() => changeTab(Tabs.WAITING_LIST)}
         selected={currentTab === Tabs.WAITING_LIST}
@@ -35,7 +34,7 @@ function WaitingListPageHeader({
       >
         {t('button.randomDraw')}
       </ButtonTab>
-    </ButtonBox>
+    </ButtonsBox>
   );
 }
 

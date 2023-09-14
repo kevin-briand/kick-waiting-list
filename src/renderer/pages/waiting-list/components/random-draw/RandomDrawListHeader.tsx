@@ -2,13 +2,7 @@ import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import React, { FormEvent, useRef } from 'react';
 import ButtonSave from '../../../../components/button/ButtonSave';
-
-const ButtonBox = styled.div`
-  display: flex;
-  justify-content: center;
-  margin: 10px 0;
-  gap: 10px;
-`;
+import CenteredFlexBox from '../CenteredFlexBox';
 
 const Form = styled.form`
   display: flex;
@@ -33,13 +27,13 @@ function RandomDrawListHeader({ onClick }: RandomDrawListHeaderProps) {
   };
 
   return (
-    <ButtonBox>
+    <CenteredFlexBox>
       <Form onSubmit={handleForm}>
         <Span>{t('form.limit')}</Span>
         <input type="number" defaultValue={3} ref={limitRef} />
         <ButtonSave>{t('button.draw')}</ButtonSave>
       </Form>
-    </ButtonBox>
+    </CenteredFlexBox>
   );
 }
 

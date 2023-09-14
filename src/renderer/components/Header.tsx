@@ -9,8 +9,8 @@ const StyledHeader = styled.div`
   justify-content: space-between;
   height: 50px;
   width: 100%;
-  background-color: ${(props) => props.theme.secondary};
-  color: ${(props) => props.theme.text};
+  background-color: ${(props) => props.theme.colors.header};
+  color: ${(props) => props.theme.colors.text.light};
 `;
 
 const ButtonParameters = styled(Button)`
