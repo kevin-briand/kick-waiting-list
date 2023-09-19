@@ -46,7 +46,7 @@ function WaitingListHeader({
       </ButtonCancel>
       <ConfirmModal
         title={t('confirm.clearList.title')}
-        open={openFakeModal}
+        open={openClearModal}
         close={handleConfirmClearListDialog}
         confirmMessage={t('confirm.clearList.content')}
       />
