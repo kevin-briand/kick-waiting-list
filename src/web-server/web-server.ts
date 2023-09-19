@@ -1,20 +1,23 @@
+import path from 'path';
 import express from 'express';
 import { IncomingMessage, Server, ServerResponse } from 'http';
-import getAlive from './route/get-alive';
 
-class Api {
-  private api = express();
+class WebServer {
+  private webServer = express();
 
   private server:
     | Server<typeof IncomingMessage, typeof ServerResponse>
     | undefined = undefined;
 
   constructor() {
-    this.api.use('/', getAlive);
+    const publicPath = path.join(__dirname, 'public/dist');
+    const srcPath = path.join(__dirname, 'src');
+    this.webServer.use(express.static(publicPath));
+    this.webServer.use(express.static(srcPath));
   }
 
   start(port: number) {
-    this.server = this.api.listen(port, () =>
+    this.server = this.webServer.listen(port, () =>
       // eslint-disable-next-line no-console
       console.log(`API server is running on http://localhost:${port}`)
     );
@@ -27,4 +30,4 @@ class Api {
   }
 }
 
-export default Api;
+export default WebServer;

@@ -3,23 +3,40 @@ import React, { useState } from 'react';
 import ButtonCancel from '../../../../components/button/ButtonCancel';
 import ConfirmModal from '../../../../components/modal/ConfirmModal';
 import CenteredFlexBox from '../CenteredFlexBox';
+import Button from '../../../../components/button/Button';
 
 type WaitingListHeaderProps = {
   handleClear: () => void;
+  handleFakeUser: () => void;
 };
 
-function WaitingListHeader({ handleClear }: WaitingListHeaderProps) {
+function WaitingListHeader({
+  handleClear,
+  handleFakeUser,
+}: WaitingListHeaderProps) {
   const { t } = useTranslation('translation');
-  const [open, setOpen] = useState(false);
+  const [openClearModal, setOpenClearModal] = useState(false);
+  const [openFakeModal, setOpenFakeModal] = useState(false);
   const handleClearList = () => {
-    setOpen(!open);
+    setOpenClearModal(!openClearModal);
   };
 
-  const handleConfirmDialog = (accept: boolean) => {
+  const handleConfirmClearListDialog = (accept: boolean) => {
     if (accept) {
       handleClear();
     }
-    setOpen(false);
+    setOpenClearModal(false);
+  };
+
+  const handleFakeList = () => {
+    setOpenFakeModal(!openFakeModal);
+  };
+
+  const handleConfirmFakeListDialog = (accept: boolean) => {
+    if (accept) {
+      handleFakeUser();
+    }
+    setOpenFakeModal(false);
   };
 
   return (
@@ -29,9 +46,16 @@ function WaitingListHeader({ handleClear }: WaitingListHeaderProps) {
       </ButtonCancel>
       <ConfirmModal
         title={t('confirm.clearList.title')}
-        open={open}
-        close={handleConfirmDialog}
+        open={openFakeModal}
+        close={handleConfirmClearListDialog}
         confirmMessage={t('confirm.clearList.content')}
+      />
+      <Button onClick={handleFakeList}>{t('button.fakeUser')}</Button>
+      <ConfirmModal
+        title={t('confirm.fakeList.title')}
+        open={openFakeModal}
+        close={handleConfirmFakeListDialog}
+        confirmMessage={t('confirm.fakeList.content')}
       />
     </CenteredFlexBox>
   );

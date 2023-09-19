@@ -1,6 +1,6 @@
 import React, { useCallback, useLayoutEffect, useMemo, useState } from 'react';
 import { HashRouter as Router, Route, Routes } from 'react-router-dom';
-import './utils/locale/i18n';
+import '../utils/locale/i18n';
 import './App.css';
 import i18n from 'i18next';
 import { ThemeProvider } from 'styled-components';
@@ -12,7 +12,7 @@ import { USERS_LIST_KEY } from './pages/waiting-list/components/waiting-list/Wai
 import ParameterPage from './pages/parameters/parameterPage';
 import LocalStorage from './utils/local-storage/local-storage';
 import {
-  API_KEY,
+  WEB_SERVER_KEY,
   LANGUAGE_DEFAULT,
   LANGUAGE_KEY,
   PORT_KEY,
@@ -28,9 +28,9 @@ const localStorage = new LocalStorage();
 localStorage.remove(USERS_LIST_KEY);
 localStorage.remove(DRAW_LIST_KEY);
 
-if (localStorage.has(API_KEY)) {
-  const apiStatus = localStorage.get(API_KEY) ? 'start' : 'stop';
-  window.electron.ipcRenderer.sendMessage(API_KEY, {
+if (localStorage.has(WEB_SERVER_KEY)) {
+  const apiStatus = localStorage.get(WEB_SERVER_KEY) ? 'start' : 'stop';
+  window.electron.ipcRenderer.sendMessage(WEB_SERVER_KEY, {
     status: apiStatus,
     port: Number.parseInt(localStorage.get(PORT_KEY), 10),
   });

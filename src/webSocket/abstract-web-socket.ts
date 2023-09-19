@@ -21,7 +21,7 @@ abstract class AbstractWebSocket {
 
   protected onOpen(): void {}
 
-  send(data: string): void {
+  protected send(data: string): void {
     if (this.ws.readyState === WebSocket.OPEN) {
       this.ws.send(data);
     } else {

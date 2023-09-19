@@ -7,4 +7,5 @@ export type ConfigDto = {
   onlyBotrix: boolean;
   usernamePattern: RegExp;
   botrixId: number;
+  textInfo: string;
 };

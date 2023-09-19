@@ -14,8 +14,9 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
-import Api from '../api/api';
-import { API_KEY } from '../renderer/pages/parameters/consts';
+import { WEB_SERVER_KEY } from '../renderer/pages/parameters/consts';
+import WebServer from '../web-server/web-server';
+import WebSocketServer from '../webSocket/server/web-socket-server';
 
 class AppUpdater {
   constructor() {
@@ -27,15 +28,15 @@ class AppUpdater {
 
 let mainWindow: BrowserWindow | null = null;
 
-const api = new Api();
-ipcMain.on(API_KEY, async (event, args) => {
-  api.stop();
+const webServer = new WebServer();
+ipcMain.on(WEB_SERVER_KEY, async (event, args) => {
+  webServer.stop();
   if (args.status === 'start') {
-    api.start(args.port);
+    webServer.start(args.port);
   } else {
-    api.stop();
+    webServer.stop();
   }
-  event.reply(API_KEY, 'OK');
+  event.reply(WEB_SERVER_KEY, 'OK');
 });
 
 if (process.env.NODE_ENV === 'production') {
@@ -136,3 +137,12 @@ app
     });
   })
   .catch(console.log);
+
+let wsServer: WebSocketServer;
+app.on('ready', () => {
+  wsServer = new WebSocketServer(9991);
+});
+
+app.on('before-quit', () => {
+  wsServer.close();
+});

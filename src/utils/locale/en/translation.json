@@ -1,6 +1,10 @@
 {
   "title": "Waiting list Kick",
   "emptyList": "Empty list",
+  "obs": {
+    "user_one": "+ {{count}} user",
+    "user_other": "+ {{count}} users"
+  },
   "ws": {
     "connected": "Connected to server, waiting for chat subscription !",
     "subscribed": "Connected to the chat !"
@@ -18,16 +22,25 @@
     "decline": "No",
     "randomDraw": "Random draw",
     "waitingList": "Waiting list",
-    "draw": "Draw"
+    "draw": "Draw",
+    "fakeUser": "Add fake users"
   },
   "confirm": {
     "clearList": {
       "title": "Confirm list deletion",
       "content": "Can you really clear the list ?"
+    },
+    "fakeList": {
+      "title": "Confirm list replacement",
+      "content": "should you really replace the list with a fake list of usernames ?"
     }
   },
   "error": {
     "channelId": "The chat ID is not filled in"
+  },
+  "clipboard": {
+    "success": "Text copied !",
+    "error": "Error {{err}}"
   },
   "form": {
     "emptyField": "The field {{field}} is empty !",
@@ -59,7 +72,9 @@
       "save": "Save",
       "obs": "OBS",
       "activateObsApi": "Activate flux endpoint",
-      "port": "Port"
+      "port": "Port",
+      "obsTextInfo": "Text info",
+      "obsLink": "Link"
     },
     "tooltip": {
       "username": "Enter your Kick username, then click on the '$t(form.label.getChatId)' button to obtain your chat ID.",
@@ -70,7 +85,9 @@
       "usernamePattern": "This is the username pattern, it's used for getting the username when only Botrix subscribe is activated. you should use a Regexp",
       "idBotrix": "This is the Botrix Id, used only if you have activated the Botrix subscription.",
       "activateObsApi": "Enable this option to show your waiting list in your stream.",
-      "port": "Access port to the flux, change if you have à conflict with another application."
+      "port": "Access port to the flux, change if you have à conflict with another application.",
+      "obsTextInfo": "Text to be displayed at the bottom of the OBS plugin",
+      "obsLink": "Use this url to display the plugin"
     }
   }
 }

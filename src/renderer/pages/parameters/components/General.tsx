@@ -9,7 +9,7 @@ import React, {
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LANGUAGE_DEFAULT, LANGUAGE_KEY, THEME_KEY } from '../consts';
-import AVAILABLE_LANGUAGES from '../../../utils/locale/available_languages';
+import AVAILABLE_LANGUAGES from '../../../../utils/locale/available_languages';
 import Theme from '../../../themes/enum/theme';
 import LocalStorage from '../../../utils/local-storage/local-storage';
 import themeContext from '../../../themes/theme-context';

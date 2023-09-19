@@ -11,10 +11,11 @@ import UsersList from '../list/UsersList';
 import { DataDto } from '../../../../../kick/webSocket/dto/data.dto';
 import useAlertInfo from '../../../../hook/useAlertInfo';
 import { SenderDto } from '../../../../../kick/webSocket/dto/sender.dto';
-import getConfig from '../../../../utils/config/get-config';
+import Config from '../../../../utils/config/config';
 import LocalStorage from '../../../../utils/local-storage/local-storage';
 import useWebSocket from '../../../../hook/useWebSocket';
 import WaitingListHeader from './WaitingListHeader';
+import UserDtoFixture from '../../../../utils/helpers/fixture/user-dto.fixture';
 
 const CONNECTION_ESTABLISHED = 'connection_established';
 const SUBSCRIPTION_SUCCEEDED = 'subscription_succeeded';
@@ -28,11 +29,19 @@ type WaitingListProps = {
 };
 
 function WaitingList({ usersList, setUsersList }: WaitingListProps) {
-  const config = useMemo(() => getConfig(), []);
+  const config = useMemo(() => new Config().getConfig(), []);
 
   const setAlertInfo = useAlertInfo();
   const usersListRef = useRef(usersList);
   const [newUser, setNewUser] = useState<UserDto | undefined>(undefined);
+
+  const fakeUsersList = () => {
+    const fakeUsers: UserDto[] = [];
+    for (let i = 0; i < 50; i += 1) {
+      fakeUsers.push(UserDtoFixture());
+    }
+    setUsersList(fakeUsers);
+  };
 
   const addUser = useCallback(
     (user: UserDto) => {
@@ -159,15 +168,14 @@ function WaitingList({ usersList, setUsersList }: WaitingListProps) {
     if (localStorage.has(USERS_LIST_KEY)) {
       setUsersList(JSON.parse(localStorage.get(USERS_LIST_KEY)));
     }
-
-    return () => {
-      localStorage.set(USERS_LIST_KEY, JSON.stringify(usersListRef.current));
-    };
   }, [config, setUsersList]);
 
   return (
     <>
-      <WaitingListHeader handleClear={() => setUsersList([])} />
+      <WaitingListHeader
+        handleClear={() => setUsersList([])}
+        handleFakeUser={fakeUsersList}
+      />
       <UsersList users={usersList} handleDelete={deleteUser} />
     </>
   );

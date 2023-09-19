@@ -1,6 +1,10 @@
 {
   "title": "Liste d'attente Kick",
   "emptyList": "Liste vide",
+  "obs": {
+    "user_one": "+ {{count}} utilisateur en attente",
+    "user_other": "+ {{count}} utilisateurs en attente"
+  },
   "ws": {
     "connected": "Connecté au serveur, en attente de la souscription !",
     "subscribed": "Connecté au chat !"
@@ -18,16 +22,25 @@
     "decline": "Non",
     "randomDraw": "Tirer au sort",
     "waitingList": "Liste d'attente",
-    "draw": "Tirer"
+    "draw": "Tirer",
+    "fakeUser": "Ajout faux utilisateurs"
   },
   "confirm": {
     "clearList": {
       "title": "Confirmer l'effacement de la liste",
       "content": "Voulez-vous vraiment effacer la liste ?"
+    },
+    "fakeList": {
+      "title": "Confirmer le remplacement de la liste",
+      "content": "Voulez-vous vraiment remplacer la liste actuel par une liste de faux utilisateurs ?"
     }
   },
   "error": {
     "channelId": "L'ID du chat n'est pas renseigné"
+  },
+  "clipboard": {
+    "success": "Texte Copié !",
+    "error": "Erreur {{err}}"
   },
   "form": {
     "emptyField": "Le champ {{field}} est vide !",
@@ -59,7 +72,9 @@
       "save": "Enregistrer",
       "obs": "OBS",
       "activateObsApi": "Activer le point d'entrée du flux",
-      "port": "Port"
+      "port": "Port",
+      "obsTextInfo": "Texte d'info",
+      "obsLink": "Lien"
     },
     "tooltip": {
       "username": "Saisissez votre nom d'utilisateur Kick puis cliquez sur le bouton '$t(form.label.getChatId)' pour obtenir votre ID de chat",
@@ -70,7 +85,9 @@
       "usernamePattern": "Ceci est le modèle pour récupérer le nom d'utilisateur lorsque l'abonnement avec Botrix est activé. Cela doit être un Regexp",
       "idBotrix": "L'id de Botrix sur Kick, nécessaire si vous activez l'abonnement par Botrix.",
       "activateObsApi": "En cochant cette option vous pourrez afficher la liste d'attente directement dans votre stream.",
-      "port": "Port d'accès au flux, à changer en cas de conflit avec une autre application."
+      "port": "Port d'accès au flux, à changer en cas de conflit avec une autre application.",
+      "obsTextInfo": "Texte à afficher en bas du plugin OBS",
+      "obsLink": "Utiliser ce lien pour afficher le plugin dans OBS"
     }
   }
 }

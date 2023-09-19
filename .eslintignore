@@ -20,6 +20,7 @@ node_modules
 
 release/app/dist
 release/build
+src/web-server/public/dist
 .erb/dll
 
 .idea
