@@ -9,7 +9,7 @@ const StyledContainer = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: ${(props) => props.theme.colors.background.light};
-  overflow: scroll;
+  overflow: auto;
 `;
 
 const FixedContainer = styled.div`
