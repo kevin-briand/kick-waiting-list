@@ -24,14 +24,18 @@ const ButtonDelete = styled(ButtonCancel)`
 export type listItemProps = {
   name: string;
   handleDelete?: (name: string) => void;
+  prefix?: string;
 };
 
-export function Row({ name, handleDelete }: listItemProps) {
+export function Row({ name, handleDelete, prefix }: listItemProps) {
   const { t } = useTranslation('translation');
 
   return (
     <StyledRow>
-      <Username>{name}</Username>
+      <Username>
+        {prefix}
+        {name}
+      </Username>
       {handleDelete ? (
         <ButtonDelete onClick={() => handleDelete(name)}>
           {t('button.delete')}

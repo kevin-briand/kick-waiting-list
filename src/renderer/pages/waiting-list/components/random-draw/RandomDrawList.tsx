@@ -57,7 +57,7 @@ function RandomDrawList({ usersList }: RandomDrawListProps) {
         confirmMessage={t('confirm.clearList.content')}
       />
       <RandomDrawListHeader onClick={handleClick} />
-      <UsersList users={result} />
+      <UsersList users={result} prefixNumber />
     </>
   );
 }

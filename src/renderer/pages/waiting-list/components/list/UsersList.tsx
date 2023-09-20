@@ -18,15 +18,17 @@ const EmptyList = styled.div`
 type ListProps = {
   users: UserDto[];
   handleDelete?: (username: string) => void;
+  prefixNumber?: boolean;
 };
 
-function UsersList({ users, handleDelete }: ListProps) {
+function UsersList({ users, handleDelete, prefixNumber }: ListProps) {
   const { t } = useTranslation('translation');
   return (
     <StyledList>
-      {users.map((user) => {
+      {users.map((user, index) => {
         return (
           <Row
+            prefix={prefixNumber ? `${index + 1} - ` : undefined}
             key={user.username}
             name={user.username ?? ''}
             handleDelete={handleDelete}
