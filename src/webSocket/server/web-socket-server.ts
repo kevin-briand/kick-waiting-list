@@ -1,5 +1,8 @@
 import { WebSocket } from 'ws';
 
+export const PING = 'PING';
+export const PONG = 'PONG';
+
 class WebSocketServer {
   private wsServer;
 
@@ -13,6 +16,10 @@ class WebSocketServer {
   }
 
   onMessage(_ws: WebSocket, event: { data: any }): void {
+    if (event.data === PING) {
+      _ws.send(PONG);
+      return;
+    }
     this.sendToAll(_ws, event.data);
   }
 

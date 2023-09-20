@@ -34,7 +34,7 @@ abstract class AbstractWebSocket {
 
   protected onClose(): void {
     if (this.reconnect) {
-      this.ws = new WebSocket(this.url);
+      this.open();
     }
   }
 
@@ -48,6 +48,7 @@ abstract class AbstractWebSocket {
       this.ws.close();
     }
     this.ws = new WebSocket(this.url);
+    this.initEvents();
   }
 
   onError(ev: Event): void {
