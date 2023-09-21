@@ -18,7 +18,7 @@ const TextInfo = styled.div`
   animation: my-animation 10s linear infinite;
   white-space: nowrap;
   color: white;
-  font-size: 1.5em;
+  font-size: 2em;
 
   @keyframes my-animation {
     from {

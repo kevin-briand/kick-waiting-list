@@ -8,4 +8,5 @@ export type ConfigDto = {
   usernamePattern: RegExp;
   botrixId: number;
   textInfo: string;
+  viewersLive: number;
 };

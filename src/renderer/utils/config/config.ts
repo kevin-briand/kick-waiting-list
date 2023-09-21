@@ -10,6 +10,7 @@ import {
   UNSUBSCRIBE_KEY,
   USERNAME_KEY,
   USERNAME_PATTERN_KEY,
+  VIEWERS_LIVE_KEY,
 } from '../../pages/parameters/consts';
 
 class Config {
@@ -26,6 +27,7 @@ class Config {
       username: this.localStorage.get(USERNAME_KEY),
       usernamePattern: new RegExp(this.localStorage.get(USERNAME_PATTERN_KEY)),
       textInfo: this.localStorage.get(TEXT_INFO_KEY),
+      viewersLive: Number.parseInt(this.localStorage.get(VIEWERS_LIVE_KEY), 10),
     };
   };
 

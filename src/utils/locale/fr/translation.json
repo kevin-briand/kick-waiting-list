@@ -23,7 +23,8 @@
     "randomDraw": "Tirer au sort",
     "waitingList": "Liste d'attente",
     "draw": "Tirer",
-    "fakeUser": "Ajout faux utilisateurs"
+    "fakeUser": "Ajout faux utilisateurs",
+    "nextViewers": "Viewers suivant"
   },
   "confirm": {
     "clearList": {
@@ -36,7 +37,8 @@
     }
   },
   "error": {
-    "channelId": "L'ID du chat n'est pas renseigné"
+    "channelId": "L'ID du chat n'est pas renseigné",
+    "liveFull": "Il y a déjà {{nb}} joueurs en live"
   },
   "clipboard": {
     "success": "Texte Copié !",
@@ -74,7 +76,9 @@
       "activateObsApi": "Activer le point d'entrée du flux",
       "port": "Port",
       "obsTextInfo": "Texte d'info",
-      "obsLink": "Lien"
+      "obsLink": "Lien",
+      "viewersLive": "Viewers en live",
+      "viewers": "Viewers"
     },
     "tooltip": {
       "username": "Saisissez votre nom d'utilisateur Kick puis cliquez sur le bouton '$t(form.label.getChatId)' pour obtenir votre ID de chat",
@@ -87,7 +91,8 @@
       "activateObsApi": "En cochant cette option vous pourrez afficher la liste d'attente directement dans votre stream.",
       "port": "Port d'accès au flux, à changer en cas de conflit avec une autre application.",
       "obsTextInfo": "Texte à afficher en bas du plugin OBS",
-      "obsLink": "Utiliser ce lien pour afficher le plugin dans OBS"
+      "obsLink": "Utiliser ce lien pour afficher le plugin dans OBS",
+      "viewersLive": "Choisissez le nombre de viewers en jeu en même temps"
     }
   }
 }

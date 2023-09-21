@@ -12,6 +12,7 @@ type ThemeDto = {
       default: string;
       error: string;
       success: string;
+      disabled: string;
     };
     background: {
       light: string;

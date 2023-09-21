@@ -10,6 +10,7 @@ export const THEME_KEY = 'theme';
 export const WEB_SERVER_KEY = 'webServer';
 export const PORT_KEY = 'port';
 export const TEXT_INFO_KEY = 'textInfo';
+export const VIEWERS_LIVE_KEY = 'viewersLive';
 
 export const BOTRIX_DEFAULT_ID = 1160406;
 // eslint-disable-next-line

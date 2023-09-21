@@ -2,6 +2,9 @@ import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { UserDto } from './dto/user.dto';
 import { Row } from './Row';
+import UserStatus from './enum/user-status';
+import ButtonCancel from '../../../../components/button/ButtonCancel';
+import ButtonDisabled from '../../../../components/button/ButtonDisabled';
 
 const StyledList = styled.ul`
   display: flex;
@@ -18,17 +21,38 @@ const EmptyList = styled.div`
 type ListProps = {
   users: UserDto[];
   handleDelete?: (username: string) => void;
+  handleLive?: (user: UserDto) => void;
   prefixNumber?: boolean;
 };
 
-function UsersList({ users, handleDelete, prefixNumber }: ListProps) {
+function UsersList({
+  users,
+  handleDelete,
+  handleLive,
+  prefixNumber,
+}: ListProps) {
   const { t } = useTranslation('translation');
+
+  function addPrefix(user: UserDto, index: number) {
+    if (prefixNumber) {
+      return <span>{index + 1} - </span>;
+    }
+    if (user.status === UserStatus.LIVE) {
+      return <ButtonCancel disabled>LIVE</ButtonCancel>;
+    }
+    return (
+      <ButtonDisabled onClick={() => (handleLive ? handleLive(user) : null)}>
+        LIVE
+      </ButtonDisabled>
+    );
+  }
+
   return (
     <StyledList>
       {users.map((user, index) => {
         return (
           <Row
-            prefix={prefixNumber ? `${index + 1} - ` : undefined}
+            prefix={addPrefix(user, index)}
             key={user.username}
             name={user.username ?? ''}
             handleDelete={handleDelete}

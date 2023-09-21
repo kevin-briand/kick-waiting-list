@@ -10,12 +10,13 @@ import { KickDataDto } from '../../../../../kick/webSocket/dto/kick-data.dto';
 import UsersList from '../list/UsersList';
 import { DataDto } from '../../../../../kick/webSocket/dto/data.dto';
 import useAlertInfo from '../../../../hook/useAlertInfo';
-import { SenderDto } from '../../../../../kick/webSocket/dto/sender.dto';
 import Config from '../../../../utils/config/config';
 import LocalStorage from '../../../../utils/local-storage/local-storage';
 import useWebSocket from '../../../../hook/useWebSocket';
 import WaitingListHeader from './WaitingListHeader';
 import UserDtoFixture from '../../../../utils/helpers/fixture/user-dto.fixture';
+import UserStatus from '../list/enum/user-status';
+import useAlertError from '../../../../hook/useAlertError';
 
 const CONNECTION_ESTABLISHED = 'connection_established';
 const SUBSCRIPTION_SUCCEEDED = 'subscription_succeeded';
@@ -32,6 +33,7 @@ function WaitingList({ usersList, setUsersList }: WaitingListProps) {
   const config = useMemo(() => new Config().getConfig(), []);
 
   const setAlertInfo = useAlertInfo();
+  const setAlertError = useAlertError();
   const usersListRef = useRef(usersList);
   const [newUser, setNewUser] = useState<UserDto | undefined>(undefined);
 
@@ -79,15 +81,15 @@ function WaitingList({ usersList, setUsersList }: WaitingListProps) {
       if (config.onlyBotrix && data.sender.id !== config.botrixId) {
         return;
       }
-      let user = data.sender;
+      let { username } = data.sender;
       if (config.onlyBotrix) {
-        const username = data.content.match(config.usernamePattern);
-        if (!username || username[1] === '') {
+        const result = data.content.match(config.usernamePattern);
+        if (!result || result[1] === '') {
           return;
         }
-        user = { username: username[1] } as SenderDto;
+        [, username] = result;
       }
-      setNewUser(user);
+      setNewUser({ username, status: UserStatus.WAIT });
     },
     [config]
   );
@@ -120,6 +122,50 @@ function WaitingList({ usersList, setUsersList }: WaitingListProps) {
       }
     },
     [handleChatMessage, handleWebSocketInfo]
+  );
+
+  const handleNextViewers = useCallback(() => {
+    const filteredUsersList = usersListRef.current.filter(
+      (user) => user.status !== UserStatus.LIVE
+    );
+    const updatedUsersList = filteredUsersList.map((user, index) => {
+      if (index < config.viewersLive) {
+        return { username: user.username, status: UserStatus.LIVE };
+      }
+      return user;
+    });
+    setUsersList(updatedUsersList);
+  }, [config.viewersLive, setUsersList]);
+
+  const handleUserGoingLive = useCallback(
+    (user: UserDto) => {
+      if (user.status === UserStatus.LIVE) {
+        return;
+      }
+      if (
+        usersListRef.current.filter(
+          (currentUser) => currentUser.status === UserStatus.LIVE
+        ).length >= config.viewersLive
+      ) {
+        setAlertError('error.liveFull', { nb: config.viewersLive });
+        return;
+      }
+      const updatedUser = {
+        username: user.username,
+        status: UserStatus.LIVE,
+      };
+      const updatedUsersList = usersListRef.current.map((currentUser) => {
+        if (currentUser.username === user.username) {
+          return updatedUser;
+        }
+        return currentUser;
+      });
+      const finalList = updatedUsersList.sort(
+        (userA, userB) => userB.status - userA.status
+      );
+      setUsersList(finalList);
+    },
+    [config.viewersLive, setAlertError, setUsersList]
   );
 
   useWebSocket(config.chatId, handleMessage);
@@ -175,8 +221,13 @@ function WaitingList({ usersList, setUsersList }: WaitingListProps) {
       <WaitingListHeader
         handleClear={() => setUsersList([])}
         handleFakeUser={fakeUsersList}
+        handleNextViewers={handleNextViewers}
       />
-      <UsersList users={usersList} handleDelete={deleteUser} />
+      <UsersList
+        users={usersList}
+        handleDelete={deleteUser}
+        handleLive={handleUserGoingLive}
+      />
     </>
   );
 }

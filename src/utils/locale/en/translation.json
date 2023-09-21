@@ -23,7 +23,8 @@
     "randomDraw": "Random draw",
     "waitingList": "Waiting list",
     "draw": "Draw",
-    "fakeUser": "Add fake users"
+    "fakeUser": "Add fake users",
+    "nextViewers": "Next viewers"
   },
   "confirm": {
     "clearList": {
@@ -36,7 +37,8 @@
     }
   },
   "error": {
-    "channelId": "The chat ID is not filled in"
+    "channelId": "The chat ID is not filled in",
+    "liveFull": "There are already {{nb}} live players"
   },
   "clipboard": {
     "success": "Text copied !",
@@ -74,7 +76,9 @@
       "activateObsApi": "Activate flux endpoint",
       "port": "Port",
       "obsTextInfo": "Text info",
-      "obsLink": "Link"
+      "obsLink": "Link",
+      "viewersLive": "Viewers in live",
+      "viewers": "Viewers"
     },
     "tooltip": {
       "username": "Enter your Kick username, then click on the '$t(form.label.getChatId)' button to obtain your chat ID.",
@@ -87,7 +91,8 @@
       "activateObsApi": "Enable this option to show your waiting list in your stream.",
       "port": "Access port to the flux, change if you have à conflict with another application.",
       "obsTextInfo": "Text to be displayed at the bottom of the OBS plugin",
-      "obsLink": "Use this url to display the plugin"
+      "obsLink": "Use this url to display the plugin",
+      "viewersLive": "Set the number of simultaneous viewers in Live"
     }
   }
 }

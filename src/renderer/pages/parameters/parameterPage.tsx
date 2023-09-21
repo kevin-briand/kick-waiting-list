@@ -10,10 +10,13 @@ import MessagePattern from './components/MessagePattern';
 import Advanced from './components/Advanced';
 import FixedWidthFlexBox from './components/components/FixedWidthFlexBox';
 import Obs from './components/obs';
+import Viewers from './components/Viewers';
 
 const BoutonBox = styled(FixedWidthFlexBox)`
   justify-content: center;
 `;
+
+const FORM_SECTION_COUNT = 6;
 
 function ParameterPage() {
   const { t } = useTranslation('translation');
@@ -33,7 +36,7 @@ function ParameterPage() {
   };
 
   useEffect(() => {
-    if (saveCounter === 5) {
+    if (saveCounter === FORM_SECTION_COUNT) {
       setSaveCounter(0);
       setAlertInfo('form.saved');
     }
@@ -49,6 +52,7 @@ function ParameterPage() {
           datasSaved={datasSaved}
         />
         <MessagePattern save={save} datasSaved={datasSaved} />
+        <Viewers save={save} datasSaved={datasSaved} />
         <Obs save={save} datasSaved={datasSaved} />
         <Advanced
           save={save}

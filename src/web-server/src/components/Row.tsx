@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import { useTranslation } from 'react-i18next';
-import ButtonCancel from '../../../renderer/components/button/ButtonCancel';
+import { ReactElement } from 'react';
 
 const StyledRow = styled.li`
   display: flex;
@@ -16,26 +15,25 @@ const Username = styled.div`
   font-size: 2.5em;
 `;
 
-const ButtonDelete = styled(ButtonCancel)`
-  border-radius: 0 3px 3px 0;
+const Prefix = styled.div`
+  width: 15%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
 `;
 
 export type listItemProps = {
   name: string;
-  handleDelete?: (name: string) => void;
+  statusPrefix?: ReactElement;
 };
 
-export function Row({ name, handleDelete }: listItemProps) {
-  const { t } = useTranslation('translation');
-
+export function Row({ name, statusPrefix }: listItemProps) {
   return (
     <StyledRow>
+      <Prefix>{statusPrefix}</Prefix>
       <Username>{name}</Username>
-      {handleDelete ? (
-        <ButtonDelete onClick={() => handleDelete(name)}>
-          {t('button.delete')}
-        </ButtonDelete>
-      ) : null}
     </StyledRow>
   );
 }

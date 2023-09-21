@@ -14,6 +14,7 @@ export const lightTheme: ThemeDto = {
       default: '#669bbc',
       error: '#f71735',
       success: '#8ea604',
+      disabled: '#636365',
     },
     background: {
       light: '#D2D6DC',
@@ -36,6 +37,7 @@ export const darkTheme: ThemeDto = {
       default: '#4c7a99',
       error: '#9a1023',
       success: '#6d7f04',
+      disabled: '#636365',
     },
     background: {
       light: '#333',

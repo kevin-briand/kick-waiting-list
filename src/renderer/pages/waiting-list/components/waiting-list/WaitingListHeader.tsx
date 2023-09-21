@@ -8,11 +8,13 @@ import Button from '../../../../components/button/Button';
 type WaitingListHeaderProps = {
   handleClear: () => void;
   handleFakeUser: () => void;
+  handleNextViewers: () => void;
 };
 
 function WaitingListHeader({
   handleClear,
   handleFakeUser,
+  handleNextViewers,
 }: WaitingListHeaderProps) {
   const { t } = useTranslation('translation');
   const [openClearModal, setOpenClearModal] = useState(false);
@@ -50,6 +52,7 @@ function WaitingListHeader({
         close={handleConfirmClearListDialog}
         confirmMessage={t('confirm.clearList.content')}
       />
+      <Button onClick={handleNextViewers}>{t('button.nextViewers')}</Button>
       <Button onClick={handleFakeList}>{t('button.fakeUser')}</Button>
       <ConfirmModal
         title={t('confirm.fakeList.title')}
