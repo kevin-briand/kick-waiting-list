@@ -1,5 +1,7 @@
+import BadgeType from '../enum/badge-type';
+
 export type BadgeDto = {
-  type: string;
+  type: BadgeType;
   text: string;
   count: number;
 };

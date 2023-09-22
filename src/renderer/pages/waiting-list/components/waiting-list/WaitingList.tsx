@@ -17,6 +17,7 @@ import WaitingListHeader from './WaitingListHeader';
 import UserDtoFixture from '../../../../utils/helpers/fixture/user-dto.fixture';
 import UserStatus from '../list/enum/user-status';
 import useAlertError from '../../../../hook/useAlertError';
+import badgeType from '../../../../../kick/webSocket/enum/badge-type';
 
 const CONNECTION_ESTABLISHED = 'connection_established';
 const SUBSCRIPTION_SUCCEEDED = 'subscription_succeeded';
@@ -97,6 +98,32 @@ function WaitingList({ usersList, setUsersList }: WaitingListProps) {
     [config]
   );
 
+  const handleModeratorCommands = useCallback(
+    (data: DataDto) => {
+      const moderatorLevelBagdeType = [
+        badgeType.MODERATOR,
+        badgeType.BROADCASTER,
+      ];
+      if (
+        !data.sender.identity.badges.some((badge) =>
+          moderatorLevelBagdeType.includes(badge.type)
+        )
+      ) {
+        return;
+      }
+      if (data.content.includes(config.removePlayerCommand.trim())) {
+        const player = data.content.match(config.usernamePattern);
+        if (!player || player[1] === '') {
+          return;
+        }
+        deleteUser(player[1]);
+      } else if (data.content.includes(config.clearListCommand.trim())) {
+        setUsersList([]);
+      }
+    },
+    [config, deleteUser, setUsersList]
+  );
+
   const handleChatMessage = useCallback(
     (data: KickDataDto) => {
       if (
@@ -111,9 +138,11 @@ function WaitingList({ usersList, setUsersList }: WaitingListProps) {
         )
       ) {
         deleteUser(data.data.sender.username);
+      } else if (config.moderatorCommands) {
+        handleModeratorCommands(data.data);
       }
     },
-    [config, deleteUser, handleSubscribeMessage]
+    [config, deleteUser, handleModeratorCommands, handleSubscribeMessage]
   );
 
   const handleMessage = useCallback(

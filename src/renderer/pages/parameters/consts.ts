@@ -11,6 +11,9 @@ export const WEB_SERVER_KEY = 'webServer';
 export const PORT_KEY = 'port';
 export const TEXT_INFO_KEY = 'textInfo';
 export const VIEWERS_LIVE_KEY = 'viewersLive';
+export const MODERATOR_COMMANDS_KEY = 'moderatorCommands';
+export const REMOVE_PLAYER_COMMAND_KEY = 'rmPlayerCommand';
+export const CLEAR_LIST_COMMAND_KEY = 'clearListCommand';
 
 export const BOTRIX_DEFAULT_ID = 1160406;
 // eslint-disable-next-line

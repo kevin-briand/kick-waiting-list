@@ -54,7 +54,9 @@
     "limit": "Limit",
     "defaultValue": {
       "subscribe": "Your ticket has been purchased",
-      "unsubscribe": "!quit"
+      "unsubscribe": "!quit",
+      "rmPlayerCommand": "!quit",
+      "clearListCommand": "!clear"
     },
     "label": {
       "general": "General",
@@ -78,7 +80,10 @@
       "obsTextInfo": "Text info",
       "obsLink": "Link",
       "viewersLive": "Viewers in live",
-      "viewers": "Viewers"
+      "viewers": "Viewers",
+      "moderatorCommands": "Activate moderator commands",
+      "rmPlayerCommand": "Remove player",
+      "clearListCommand": "Clear list"
     },
     "tooltip": {
       "username": "Enter your Kick username, then click on the '$t(form.label.getChatId)' button to obtain your chat ID.",
@@ -92,7 +97,10 @@
       "port": "Access port to the flux, change if you have à conflict with another application.",
       "obsTextInfo": "Text to be displayed at the bottom of the OBS plugin",
       "obsLink": "Use this url to display the plugin",
-      "viewersLive": "Set the number of simultaneous viewers in Live"
+      "viewersLive": "Set the number of simultaneous viewers in Live",
+      "moderatorCommands": "Moderators can use commands to update the waiting list",
+      "rmPlayerCommand": "Command to remove a player from the list. ex: !quit @player",
+      "clearListCommand": "Command to clear the queue"
     }
   }
 }

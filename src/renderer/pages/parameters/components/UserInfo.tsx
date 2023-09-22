@@ -28,6 +28,7 @@ type UserInfoProps = {
 
 const ChatIdInput = styled(Input)`
   flex-grow: 1;
+  width: 25%;
 `;
 
 function UserInfo({ save, advancedEnabled, datasSaved }: UserInfoProps) {

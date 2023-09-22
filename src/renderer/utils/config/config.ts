@@ -3,8 +3,11 @@ import LocalStorage from '../local-storage/local-storage';
 import {
   BOTRIX_ID_KEY,
   CHAT_ID_KEY,
+  CLEAR_LIST_COMMAND_KEY,
   LANGUAGE_KEY,
+  MODERATOR_COMMANDS_KEY,
   ONLY_BOTRIX_KEY,
+  REMOVE_PLAYER_COMMAND_KEY,
   SUBSCRIBE_KEY,
   TEXT_INFO_KEY,
   UNSUBSCRIBE_KEY,
@@ -28,6 +31,9 @@ class Config {
       usernamePattern: new RegExp(this.localStorage.get(USERNAME_PATTERN_KEY)),
       textInfo: this.localStorage.get(TEXT_INFO_KEY),
       viewersLive: Number.parseInt(this.localStorage.get(VIEWERS_LIVE_KEY), 10),
+      moderatorCommands: Boolean(this.localStorage.get(MODERATOR_COMMANDS_KEY)),
+      removePlayerCommand: this.localStorage.get(REMOVE_PLAYER_COMMAND_KEY),
+      clearListCommand: this.localStorage.get(CLEAR_LIST_COMMAND_KEY),
     };
   };
 

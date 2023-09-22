@@ -54,7 +54,9 @@
     "limit": "Limite",
     "defaultValue": {
       "subscribe": "Ton ticket est acheté",
-      "unsubscribe": "!partir"
+      "unsubscribe": "!partir",
+      "rmPlayerCommand": "!quit",
+      "clearListCommand": "!clear"
     },
     "label": {
       "general": "Général",
@@ -78,7 +80,10 @@
       "obsTextInfo": "Texte d'info",
       "obsLink": "Lien",
       "viewersLive": "Viewers en live",
-      "viewers": "Viewers"
+      "viewers": "Viewers",
+      "moderatorCommands": "Activer les commandes modérateur",
+      "rmPlayerCommand": "Supprimer un joueur",
+      "clearListCommand": "Vider la liste"
     },
     "tooltip": {
       "username": "Saisissez votre nom d'utilisateur Kick puis cliquez sur le bouton '$t(form.label.getChatId)' pour obtenir votre ID de chat",
@@ -92,7 +97,10 @@
       "port": "Port d'accès au flux, à changer en cas de conflit avec une autre application.",
       "obsTextInfo": "Texte à afficher en bas du plugin OBS",
       "obsLink": "Utiliser ce lien pour afficher le plugin dans OBS",
-      "viewersLive": "Choisissez le nombre de viewers en jeu en même temps"
+      "viewersLive": "Choisissez le nombre de viewers en jeu en même temps",
+      "moderatorCommands": "Autoriser les modérateurs à utiliser des commandes pour intervenir sur la liste d'attente",
+      "rmPlayerCommand": "Commande pour supprimer un joueur de la liste d'attente. ex: !quit @player",
+      "clearListCommand": "Commande pour vider la liste d'attente"
     }
   }
 }

@@ -9,4 +9,7 @@ export type ConfigDto = {
   botrixId: number;
   textInfo: string;
   viewersLive: number;
+  moderatorCommands: boolean;
+  removePlayerCommand: string;
+  clearListCommand: string;
 };
