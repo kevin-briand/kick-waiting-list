@@ -78,7 +78,10 @@ function WaitingList({ usersList, setUsersList }: WaitingListProps) {
 
   const handleSubscribeMessage = useCallback(
     (data: DataDto) => {
-      if (config.onlyBotrix && data.sender.id !== config.botrixId) {
+      if (
+        (config.onlyBotrix && data.sender.id !== config.botrixId) ||
+        (!config.onlyBotrix && data.sender.id === config.botrixId)
+      ) {
         return;
       }
       let { username } = data.sender;
