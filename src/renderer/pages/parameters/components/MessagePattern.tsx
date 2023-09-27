@@ -20,6 +20,7 @@ import TitleBox from './components/TitleBox';
 import H3 from './components/H3';
 import useValidForm from '../../../hook/useValidForm';
 import Input from '../../../components/input/Input';
+import H4 from './components/H4';
 
 type MessagePatternProps = {
   save?: number;
@@ -122,6 +123,11 @@ function MessagePattern({ save, datasSaved }: MessagePatternProps) {
           defaultChecked={Boolean(localStorage.get(ONLY_BOTRIX_KEY))}
           ref={onlyBotrixRef}
         />
+      </Grid>
+      <TitleBox>
+        <H4>{t('form.label.moderatorCommand')}</H4>
+      </TitleBox>
+      <Grid>
         {t('form.label.moderatorCommands')}
         <Input
           type="checkbox"

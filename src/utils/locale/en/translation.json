@@ -83,7 +83,8 @@
       "viewers": "Viewers",
       "moderatorCommands": "Activate moderator commands",
       "rmPlayerCommand": "Remove player",
-      "clearListCommand": "Clear list"
+      "clearListCommand": "Clear list",
+      "moderatorCommand": "Moderator commands"
     },
     "tooltip": {
       "username": "Enter your Kick username, then click on the '$t(form.label.getChatId)' button to obtain your chat ID.",

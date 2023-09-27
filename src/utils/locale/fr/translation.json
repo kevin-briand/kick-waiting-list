@@ -83,7 +83,8 @@
       "viewers": "Viewers",
       "moderatorCommands": "Activer les commandes modérateur",
       "rmPlayerCommand": "Supprimer un joueur",
-      "clearListCommand": "Vider la liste"
+      "clearListCommand": "Vider la liste",
+      "moderatorCommand": "Commandes modérateur"
     },
     "tooltip": {
       "username": "Saisissez votre nom d'utilisateur Kick puis cliquez sur le bouton '$t(form.label.getChatId)' pour obtenir votre ID de chat",
