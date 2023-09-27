@@ -11,6 +11,8 @@ import Advanced from './components/Advanced';
 import FixedWidthFlexBox from './components/components/FixedWidthFlexBox';
 import Obs from './components/obs';
 import Viewers from './components/Viewers';
+import useAppWebSocket from '../../hook/useAppWebSocket';
+import Config from '../../utils/config/config';
 
 const BoutonBox = styled(FixedWidthFlexBox)`
   justify-content: center;
@@ -24,6 +26,7 @@ function ParameterPage() {
   const setAlertInfo = useAlertInfo();
   const [save, setSave] = useState<number | undefined>(undefined);
   const [saveCounter, setSaveCounter] = useState<number>(0);
+  const { sendMessage } = useAppWebSocket();
 
   const datasSaved = () => {
     setSaveCounter((prevState) => prevState + 1);
@@ -38,9 +41,10 @@ function ParameterPage() {
   useEffect(() => {
     if (saveCounter === FORM_SECTION_COUNT) {
       setSaveCounter(0);
+      sendMessage(new Config().getConfig());
       setAlertInfo('form.saved');
     }
-  }, [saveCounter, setAlertInfo]);
+  }, [saveCounter, sendMessage, setAlertInfo]);
 
   return (
     <Container>

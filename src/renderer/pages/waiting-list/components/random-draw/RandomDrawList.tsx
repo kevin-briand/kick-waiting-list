@@ -6,20 +6,18 @@ import RandomDraw from '../../../../utils/random/random-draw';
 import RandomDrawListHeader from './RandomDrawListHeader';
 import ConfirmModal from '../../../../components/modal/ConfirmModal';
 import LocalStorage from '../../../../utils/local-storage/local-storage';
+import useUsersList from '../../../../hook/useUsersList';
 
 export const DRAW_LIST_KEY = 'drawList';
 
-type RandomDrawListProps = {
-  usersList: UserDto[];
-};
-
 const localStorage = new LocalStorage();
 
-function RandomDrawList({ usersList }: RandomDrawListProps) {
+function RandomDrawList() {
   const { t } = useTranslation('translation');
   const [result, setResult] = useState<UserDto[]>([]);
   const [open, setOpen] = useState(false);
   const [numberOfDraws, setNumberOfDraws] = useState<number>(0);
+  const { usersList } = useUsersList();
 
   const handleClick = (numOfDraws: number) => {
     setNumberOfDraws(numOfDraws);

@@ -23,6 +23,8 @@ import { DRAW_LIST_KEY } from './pages/waiting-list/components/random-draw/Rando
 import Theme from './themes/enum/theme';
 import { darkTheme, lightTheme } from './themes/themes';
 import ThemeContext from './themes/theme-context';
+import { UserListProvider } from './provider/UsersListProvider';
+import { AppWebSocketProvider } from './provider/AppWebSocketProvider';
 
 const localStorage = new LocalStorage();
 localStorage.remove(USERS_LIST_KEY);
@@ -65,12 +67,16 @@ export default function App() {
       <ThemeProvider theme={theme === Theme.LIGHT ? lightTheme : darkTheme}>
         <AlertMessageContext.Provider value={contextValue}>
           <AlertMessage />
-          <Router>
-            <Routes>
-              <Route path="/" element={<WaitingListPage />} />
-              <Route path="/parameters" element={<ParameterPage />} />
-            </Routes>
-          </Router>
+          <UserListProvider>
+            <AppWebSocketProvider>
+              <Router>
+                <Routes>
+                  <Route path="/" element={<WaitingListPage />} />
+                  <Route path="/parameters" element={<ParameterPage />} />
+                </Routes>
+              </Router>
+            </AppWebSocketProvider>
+          </UserListProvider>
         </AlertMessageContext.Provider>
       </ThemeProvider>
     </ThemeContext.Provider>
