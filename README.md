@@ -7,6 +7,9 @@ This application was originally created for the streamer [Ory_Gami](https://kick
 - translation (fr, en)
 - allow viewers to join and leave the waiting list with commands designed by the streamer
 - can limit joining to Botrix only (for example, you can limit joining to your subs only)
+- moderator chat commands
+- OBS plugin
+- random draw for giveaways
 
 ## How to use
 On the first use, you can see the parameters page, in this page you should enter your Kick username and click on the 'get chat ID' button, if the username exists the field Chat ID field will be filled automatically.
