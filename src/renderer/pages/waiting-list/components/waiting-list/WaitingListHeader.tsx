@@ -9,12 +9,16 @@ type WaitingListHeaderProps = {
   handleClear: () => void;
   handleFakeUser: () => void;
   handleNextViewers: () => void;
+  toggleAcceptNewUser: () => void;
+  acceptNewUser: boolean;
 };
 
 function WaitingListHeader({
   handleClear,
   handleFakeUser,
   handleNextViewers,
+  toggleAcceptNewUser,
+  acceptNewUser,
 }: WaitingListHeaderProps) {
   const { t } = useTranslation('translation');
   const [openClearModal, setOpenClearModal] = useState(false);
@@ -53,6 +57,11 @@ function WaitingListHeader({
         confirmMessage={t('confirm.clearList.content')}
       />
       <Button onClick={handleNextViewers}>{t('button.nextViewers')}</Button>
+      <Button onClick={toggleAcceptNewUser}>
+        {t(
+          acceptNewUser ? 'button.closeSubscription' : 'button.openSubscription'
+        )}
+      </Button>
       <Button onClick={handleFakeList}>{t('button.fakeUser')}</Button>
       <ConfirmModal
         title={t('confirm.fakeList.title')}

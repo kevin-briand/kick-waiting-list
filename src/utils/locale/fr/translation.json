@@ -3,7 +3,8 @@
   "emptyList": "Liste vide",
   "obs": {
     "user_one": "+ {{count}} utilisateur en attente",
-    "user_other": "+ {{count}} utilisateurs en attente"
+    "user_other": "+ {{count}} utilisateurs en attente",
+    "closedList": "Les inscriptions sont fermé !"
   },
   "ws": {
     "connected": "Connecté au serveur, en attente de la souscription !",
@@ -24,7 +25,9 @@
     "waitingList": "Liste d'attente",
     "draw": "Tirer",
     "fakeUser": "Ajout faux utilisateurs",
-    "nextViewers": "Viewers suivant"
+    "nextViewers": "Viewers suivant",
+    "openSubscription": "Ouvrir inscription",
+    "closeSubscription": "Fermer inscription"
   },
   "confirm": {
     "clearList": {

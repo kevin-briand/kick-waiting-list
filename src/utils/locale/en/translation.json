@@ -3,7 +3,8 @@
   "emptyList": "Empty list",
   "obs": {
     "user_one": "+ {{count}} user",
-    "user_other": "+ {{count}} users"
+    "user_other": "+ {{count}} users",
+    "closedList": "Registration is now closed!"
   },
   "ws": {
     "connected": "Connected to server, waiting for chat subscription !",
@@ -24,7 +25,9 @@
     "waitingList": "Waiting list",
     "draw": "Draw",
     "fakeUser": "Add fake users",
-    "nextViewers": "Next viewers"
+    "nextViewers": "Next viewers",
+    "openSubscription": "Open subscription",
+    "closeSubscription": "Close subscription"
   },
   "confirm": {
     "clearList": {

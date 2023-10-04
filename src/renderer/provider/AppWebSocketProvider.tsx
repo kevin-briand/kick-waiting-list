@@ -11,10 +11,12 @@ import AppWebSocket from '../../webSocket/app-web-socket';
 import Clients from '../../webSocket/server/enum/clients';
 import WsDataDto from '../../webSocket/server/dto/ws-data.dto';
 import Config from '../utils/config/config';
+import { WsUserListDto } from '../../webSocket/server/dto/ws-user-list.dto';
+import { ConfigDto } from '../utils/config/dto/config.dto';
 
 type WebSocketType = {
   data: {} | string;
-  sendMessage: (data: {} | string) => void;
+  sendMessage: (data: WsUserListDto | ConfigDto | string) => void;
 };
 
 export const AppWebSocketContext = createContext<WebSocketType>({

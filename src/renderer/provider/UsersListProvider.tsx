@@ -22,6 +22,8 @@ type UserType = {
   fakeUsersList: () => void;
   handleNextViewers: () => void;
   handleUserGoingLive: (user: UserDto) => void;
+  acceptNewUser: boolean;
+  toggleAcceptNewUser: () => void;
 };
 
 export const UsersListContext = createContext<UserType>({
@@ -32,6 +34,8 @@ export const UsersListContext = createContext<UserType>({
   fakeUsersList: () => null,
   handleNextViewers: () => null,
   handleUserGoingLive: () => null,
+  acceptNewUser: false,
+  toggleAcceptNewUser: () => null,
 });
 
 type UserListProviderProps = {
@@ -40,6 +44,7 @@ type UserListProviderProps = {
 
 export function UserListProvider({ children }: UserListProviderProps) {
   const [usersList, setUsersList] = useState<UserDto[]>([]);
+  const [openList, setOpenList] = useState<boolean>(false);
   const config = useMemo(() => new Config().getConfig(), []);
   const usersListRef = useRef(usersList);
   const setAlertInfo = useAlertInfo();
@@ -75,6 +80,8 @@ export function UserListProvider({ children }: UserListProviderProps) {
     }
     setUsersList(fakeUsers);
   };
+
+  const toggleAcceptNewUser = () => setOpenList((prevState) => !prevState);
 
   const handleNextViewers = useCallback(() => {
     const filteredUsersList = usersList.filter(
@@ -161,13 +168,16 @@ export function UserListProvider({ children }: UserListProviderProps) {
       fakeUsersList,
       handleNextViewers,
       handleUserGoingLive,
-    };
+      acceptNewUser: openList,
+      toggleAcceptNewUser,
+    } as UserType;
   }, [
     addUser,
     clearList,
     deleteUser,
     handleNextViewers,
     handleUserGoingLive,
+    openList,
     usersList,
   ]);
 

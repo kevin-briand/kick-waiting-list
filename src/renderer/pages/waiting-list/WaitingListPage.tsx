@@ -10,12 +10,12 @@ import useAppWebSocket from '../../hook/useAppWebSocket';
 
 function WaitingListPage() {
   const [selectedTab, setSelectedTab] = useState<Tabs>(Tabs.WAITING_LIST);
-  const { usersList } = useUsersList();
+  const { usersList, acceptNewUser } = useUsersList();
   const { data, sendMessage } = useAppWebSocket();
 
   const sendUsersList = useCallback(() => {
-    sendMessage(usersList);
-  }, [sendMessage, usersList]);
+    sendMessage({ usersList, isOpen: acceptNewUser });
+  }, [acceptNewUser, sendMessage, usersList]);
 
   const changeTab = (tab: Tabs) => {
     setSelectedTab(tab);

@@ -21,10 +21,15 @@ function WaitingList() {
     handleUserGoingLive,
     handleNextViewers,
     fakeUsersList,
+    acceptNewUser,
+    toggleAcceptNewUser,
   } = useUsersList();
 
   const handleSubscribeMessage = useCallback(
     (data: DataDto) => {
+      if (!acceptNewUser) {
+        return;
+      }
       if (
         (config.onlyBotrix && data.sender.id !== config.botrixId) ||
         (!config.onlyBotrix && data.sender.id === config.botrixId)
@@ -41,7 +46,13 @@ function WaitingList() {
       }
       addUser({ username, status: UserStatus.WAIT });
     },
-    [addUser, config.botrixId, config.onlyBotrix, config.usernamePattern]
+    [
+      acceptNewUser,
+      addUser,
+      config.botrixId,
+      config.onlyBotrix,
+      config.usernamePattern,
+    ]
   );
 
   const handleModeratorCommands = useCallback(
@@ -112,6 +123,8 @@ function WaitingList() {
         handleClear={clearList}
         handleFakeUser={fakeUsersList}
         handleNextViewers={handleNextViewers}
+        acceptNewUser={acceptNewUser}
+        toggleAcceptNewUser={toggleAcceptNewUser}
       />
       <UsersList
         users={usersList}

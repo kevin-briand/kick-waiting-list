@@ -1,9 +1,10 @@
 import Clients from '../enum/clients';
-import { UserDto } from '../../../renderer/pages/waiting-list/components/list/dto/user.dto';
+import { WsUserListDto } from './ws-user-list.dto';
+import { ConfigDto } from '../../../renderer/utils/config/dto/config.dto';
 
 type WsDataDto = {
   sender: Clients;
-  data: string | UserDto[];
+  data: string | WsUserListDto | ConfigDto;
 };
 
 export default WsDataDto;
