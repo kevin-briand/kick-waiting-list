@@ -44,7 +44,7 @@ export default function App() {
     type: AlertType.SUCCESS,
   });
   const savedTheme = Number.parseInt(localStorage.get(THEME_KEY), 10);
-  const [theme, setTheme] = useState(savedTheme ?? Theme.LIGHT);
+  const [theme, setTheme] = useState(savedTheme || Theme.LIGHT);
 
   const contextValue = useMemo(() => {
     return { alertMessage, setAlertMessage };

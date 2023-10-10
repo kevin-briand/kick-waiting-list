@@ -66,7 +66,7 @@ function General({ save, datasSaved }: GeneralProps) {
         {t('form.label.language')}
         <Select
           ref={languageRef}
-          defaultValue={localStorage.get(LANGUAGE_KEY) ?? LANGUAGE_DEFAULT}
+          defaultValue={localStorage.get(LANGUAGE_KEY) || LANGUAGE_DEFAULT}
           onChange={(event) => i18n.changeLanguage(event.target.value)}
         >
           {AVAILABLE_LANGUAGES.map((language) => (
@@ -78,7 +78,7 @@ function General({ save, datasSaved }: GeneralProps) {
         {t('form.label.theme')}
         <Select
           ref={themeRef}
-          defaultValue={localStorage.get(THEME_KEY) ?? Theme.LIGHT.toString()}
+          defaultValue={localStorage.get(THEME_KEY) || Theme.LIGHT.toString()}
           onChange={(event) => {
             const selectedValue = Number.parseInt(event.target.value, 10);
             if (!Number.isNaN(selectedValue) && selectedValue in Theme) {
