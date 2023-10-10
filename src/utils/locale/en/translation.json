@@ -2,8 +2,8 @@
   "title": "Waiting list Kick",
   "emptyList": "Empty list",
   "obs": {
-    "user_one": "+ {{count}} user",
-    "user_other": "+ {{count}} users",
+    "user_one": "+ {{count}} player",
+    "user_other": "+ {{count}} players",
     "closedList": "Registration is now closed!"
   },
   "ws": {
@@ -11,8 +11,8 @@
     "subscribed": "Connected to the chat !"
   },
   "user": {
-    "added": "The user {{username}} has been added.",
-    "deleted": "The user {{username}} has been deleted."
+    "added": "{{username}} has been added.",
+    "deleted": "{{username}} has been deleted."
   },
   "button": {
     "delete": "Delete",

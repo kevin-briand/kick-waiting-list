@@ -2,8 +2,8 @@
   "title": "Liste d'attente Kick",
   "emptyList": "Liste vide",
   "obs": {
-    "user_one": "+ {{count}} utilisateur en attente",
-    "user_other": "+ {{count}} utilisateurs en attente",
+    "user_one": "+ {{count}} joueur en attente",
+    "user_other": "+ {{count}} joueurs en attente",
     "closedList": "Les inscriptions sont fermé !"
   },
   "ws": {
@@ -11,8 +11,8 @@
     "subscribed": "Connecté au chat !"
   },
   "user": {
-    "added": "L'utilisateur {{username}} a été ajouté.",
-    "deleted": "L'utilisateur {{username}} a été supprimé."
+    "added": "{{username}} a été ajouté.",
+    "deleted": "{{username}} a été supprimé."
   },
   "button": {
     "delete": "Supprimer",
@@ -70,9 +70,9 @@
       "chatId": "ID chat",
       "getChatId": "Récupérer ID chat",
       "messagePattern": "Modèle de message",
-      "subscribe": "Abonnement",
-      "unsubscribe": "Désabonnement",
-      "onlyBotrix": "Seul Botrix peux s'abonner",
+      "subscribe": "Inscription",
+      "unsubscribe": "Désinscription",
+      "onlyBotrix": "Seul Botrix peux inscrire",
       "advanced": "Avancé",
       "usernamePattern": "Modèle du nom d'utilisateur",
       "botrixId": "ID Botrix",
@@ -95,8 +95,8 @@
       "subscribe": "Entrez un texte ou la commande que l'application va écouter. chaque fois que ce texte sera écrit dans le chat, l'utilisateur l'ayant saisi sera ajouté à la liste. Vous pouvez placer plusieurs commandes séparées par un ;",
       "unsubscribe": "Entrez un texte ou la commande que l'application va écouter. chaque fois que ce texte sera écrit dans le chat, l'utilisateur l'ayant saisi sera retiré de la liste. Vous pouvez placer plusieurs commandes séparées par un ;",
       "onlyBotrix": "Cocher cette case pour n'autoriser que Botrix à inscrire des utilisateurs à la liste. Cela vous permet de filtrer les inscriptions, seulement les abonnés ou passer par un achat dans la boutique de Botrix par exemple. Note: Si vous passez par Botrix pour l'inscription le message que Botrix écrira dans le chat doit impérativement contenir le nom de l'utilisateur sous forme @username.",
-      "usernamePattern": "Ceci est le modèle pour récupérer le nom d'utilisateur lorsque l'abonnement avec Botrix est activé. Cela doit être un Regexp",
-      "idBotrix": "L'id de Botrix sur Kick, nécessaire si vous activez l'abonnement par Botrix.",
+      "usernamePattern": "Ceci est le modèle pour récupérer le nom d'utilisateur lorsque l'inscription avec Botrix est activé. Cela doit être un Regexp",
+      "idBotrix": "L'id de Botrix sur Kick, nécessaire si vous activez l'inscription par Botrix.",
       "activateObsApi": "En cochant cette option vous pourrez afficher la liste d'attente directement dans votre stream.",
       "port": "Port d'accès au flux, à changer en cas de conflit avec une autre application.",
       "obsTextInfo": "Texte à afficher en bas du plugin OBS",

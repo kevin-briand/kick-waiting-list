@@ -6,5 +6,5 @@ export type WsUserListDto = {
 };
 
 export const isWsUserListDto = (data: {}): data is WsUserListDto => {
-  return 'usersList' in data;
+  return Object.keys(data).includes('usersList');
 };

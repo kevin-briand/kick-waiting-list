@@ -43,7 +43,7 @@ function ObsPage() {
     <Container>
       <UsersList users={usersList} />
       <Footer
-        users={usersList.length}
+        users={usersList}
         textInfo={acceptNewUser ? textInfo : t('obs.closedList')}
       />
     </Container>
