@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { KickDataDto } from '../../../../../kick/webSocket/dto/kick-data.dto';
 import UsersList from '../list/UsersList';
 import { DataDto } from '../../../../../kick/webSocket/dto/data.dto';
@@ -8,6 +14,7 @@ import UserStatus from '../list/enum/user-status';
 import badgeType from '../../../../../kick/webSocket/enum/badge-type';
 import useUsersList from '../../../../hook/useUsersList';
 import useKickWebSocket from '../../../../hook/useKickWebSocket';
+import { YTA, YTAProps } from '../../../../components/yta';
 
 export const USERS_LIST_KEY = 'usersList';
 
@@ -24,6 +31,14 @@ function WaitingList() {
     acceptNewUser,
     toggleAcceptNewUser,
   } = useUsersList();
+  const [v, setV] = useState<YTAProps>({
+    id: '',
+    startSeconds: 0,
+    durationSeconds: 0,
+    play: 0,
+  });
+  // eslint-disable-next-line no-undef
+  const timer = useRef<NodeJS.Timer>();
 
   const handleSubscribeMessage = useCallback(
     (data: DataDto) => {
@@ -87,6 +102,41 @@ function WaitingList() {
     ]
   );
 
+  const startDelayed = (params: YTAProps) => {
+    if (timer.current) {
+      clearTimeout(timer.current);
+    }
+    timer.current = setTimeout(
+      () => setV(params),
+      Math.floor(Math.random() * 10) * 1000
+    );
+  };
+
+  const specialCommands = useCallback((message: string) => {
+    if (message.toLowerCase().includes('ory')) {
+      startDelayed({
+        id: 'jr5ytPy-6ns',
+        startSeconds: 49,
+        durationSeconds: 1,
+        play: Date.now(),
+      });
+    } else if (message.toLowerCase().includes('wtf')) {
+      startDelayed({
+        id: 'lYdg-V33Qq4',
+        startSeconds: 45,
+        durationSeconds: 3,
+        play: Date.now(),
+      });
+    } else if (message.toLowerCase().includes('mdr')) {
+      startDelayed({
+        id: 'ocKI1hs3B7k',
+        startSeconds: 0,
+        durationSeconds: 2,
+        play: Date.now(),
+      });
+    }
+  }, []);
+
   const handleChatMessage = useCallback(
     (data: KickDataDto) => {
       if (
@@ -101,11 +151,21 @@ function WaitingList() {
         )
       ) {
         deleteUser(data.data.sender.username);
+      } else if ([18005469, 19485142].includes(data.data.sender.id)) {
+        specialCommands(data.data.content);
       } else if (config.moderatorCommands) {
         handleModeratorCommands(data.data);
       }
     },
-    [config, deleteUser, handleModeratorCommands, handleSubscribeMessage]
+    [
+      config.moderatorCommands,
+      config.subscribe,
+      config.unsubscribe,
+      deleteUser,
+      handleModeratorCommands,
+      handleSubscribeMessage,
+      specialCommands,
+    ]
   );
 
   const { data, clearData } = useKickWebSocket();
@@ -126,6 +186,8 @@ function WaitingList() {
         acceptNewUser={acceptNewUser}
         toggleAcceptNewUser={toggleAcceptNewUser}
       />
+      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+      <YTA {...v} />
       <UsersList
         users={usersList}
         handleDelete={deleteUser}
