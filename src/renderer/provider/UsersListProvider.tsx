@@ -43,9 +43,9 @@ type UserListProviderProps = {
 };
 
 export function UserListProvider({ children }: UserListProviderProps) {
-  const [usersList, setUsersList] = useState<UserDto[]>([]);
-  const [openList, setOpenList] = useState<boolean>(false);
   const config = useMemo(() => new Config().getConfig(), []);
+  const [usersList, setUsersList] = useState<UserDto[]>([]);
+  const [openList, setOpenList] = useState<boolean>(config.stateListOnStartup);
   const usersListRef = useRef(usersList);
   const setAlertInfo = useAlertInfo();
   const setAlertError = useAlertError();

@@ -8,7 +8,12 @@ import React, {
   useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
-import { LANGUAGE_DEFAULT, LANGUAGE_KEY, THEME_KEY } from '../consts';
+import {
+  LANGUAGE_DEFAULT,
+  LANGUAGE_KEY,
+  LIST_ON_STARTUP_KEY,
+  THEME_KEY,
+} from '../consts';
 import AVAILABLE_LANGUAGES from '../../../../utils/locale/available_languages';
 import Theme from '../../../themes/enum/theme';
 import LocalStorage from '../../../utils/local-storage/local-storage';
@@ -33,6 +38,7 @@ function General({ save, datasSaved }: GeneralProps) {
 
   const languageRef = useRef<HTMLSelectElement>(null);
   const themeRef = useRef<HTMLSelectElement>(null);
+  const stateListRef = useRef<HTMLSelectElement>(null);
   const theme = useContext(themeContext);
 
   const saveParameters = useCallback(() => {
@@ -41,12 +47,14 @@ function General({ save, datasSaved }: GeneralProps) {
       !validForm([
         { ref: languageRef, translationKey: 'form.label.language' },
         { ref: themeRef, translationKey: 'form.label.theme' },
+        { ref: stateListRef, translationKey: 'form.label.listState' },
       ])
     ) {
       return;
     }
     localStorage.set(LANGUAGE_KEY, languageRef.current!.value);
     localStorage.set(THEME_KEY, themeRef.current!.value);
+    localStorage.set(LIST_ON_STARTUP_KEY, stateListRef.current!.value);
     datasSaved();
   }, [datasSaved, localStorage, save, validForm]);
 
@@ -96,6 +104,14 @@ function General({ save, datasSaved }: GeneralProps) {
             }
             return null;
           })}
+        </Select>
+        {t('form.label.stateList')}
+        <Select
+          ref={stateListRef}
+          defaultValue={localStorage.get(LIST_ON_STARTUP_KEY) || 0}
+        >
+          <Option value="0">{t('form.stateList.close')}</Option>
+          <Option value="1">{t('form.stateList.open')}</Option>
         </Select>
       </Grid>
     </>

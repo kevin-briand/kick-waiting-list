@@ -55,6 +55,10 @@
     "failGetChannelId": "Fail to get channel ID, your username is good ?",
     "saved": "Datas saved !",
     "limit": "Limit",
+    "stateList": {
+      "open": "Opened",
+      "close": "Closed"
+    },
     "defaultValue": {
       "subscribe": "Your ticket has been purchased",
       "unsubscribe": "!quit",
@@ -87,7 +91,8 @@
       "moderatorCommands": "Activate moderator commands",
       "rmPlayerCommand": "Remove player",
       "clearListCommand": "Clear list",
-      "moderatorCommand": "Moderator commands"
+      "moderatorCommand": "Moderator commands",
+      "stateList": "State list on startup"
     },
     "tooltip": {
       "username": "Enter your Kick username, then click on the '$t(form.label.getChatId)' button to obtain your chat ID.",

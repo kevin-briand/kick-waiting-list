@@ -12,4 +12,5 @@ export type ConfigDto = {
   moderatorCommands: boolean;
   removePlayerCommand: string;
   clearListCommand: string;
+  stateListOnStartup: boolean;
 };

@@ -55,6 +55,10 @@
     "failGetChannelId": "Echec de récupération de l'ID du chat, votre nom d'utilisateur est bon ?",
     "saved": "Données sauvegardées !",
     "limit": "Limite",
+    "stateList": {
+      "open": "Ouverte",
+      "close": "Fermée"
+    },
     "defaultValue": {
       "subscribe": "Ton ticket est acheté",
       "unsubscribe": "!partir",
@@ -87,7 +91,8 @@
       "moderatorCommands": "Activer les commandes modérateur",
       "rmPlayerCommand": "Supprimer un joueur",
       "clearListCommand": "Vider la liste",
-      "moderatorCommand": "Commandes modérateur"
+      "moderatorCommand": "Commandes modérateur",
+      "stateList": "Etat de la liste au lancement"
     },
     "tooltip": {
       "username": "Saisissez votre nom d'utilisateur Kick puis cliquez sur le bouton '$t(form.label.getChatId)' pour obtenir votre ID de chat",

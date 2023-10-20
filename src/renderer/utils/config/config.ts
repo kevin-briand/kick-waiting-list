@@ -5,6 +5,7 @@ import {
   CHAT_ID_KEY,
   CLEAR_LIST_COMMAND_KEY,
   LANGUAGE_KEY,
+  LIST_ON_STARTUP_KEY,
   MODERATOR_COMMANDS_KEY,
   ONLY_BOTRIX_KEY,
   REMOVE_PLAYER_COMMAND_KEY,
@@ -34,6 +35,7 @@ class Config {
       moderatorCommands: Boolean(this.localStorage.get(MODERATOR_COMMANDS_KEY)),
       removePlayerCommand: this.localStorage.get(REMOVE_PLAYER_COMMAND_KEY),
       clearListCommand: this.localStorage.get(CLEAR_LIST_COMMAND_KEY),
+      stateListOnStartup: this.localStorage.get(LIST_ON_STARTUP_KEY) === '1',
     };
   };
 
