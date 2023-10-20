@@ -1,114 +1,87 @@
 import styled from 'styled-components';
-import {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from 'react';
-import { useTranslation } from 'react-i18next';
-import { UserDto } from '../../../renderer/pages/waiting-list/components/list/dto/user.dto';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import useToast from '../hook/useToast';
 
 const StyledFooter = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  height: 20%;
+  height: 25%;
 `;
 
-const ScrollContainer = styled.div`
-  overflow: visible;
-  flex-grow: 1;
-`;
+type InfoTextProps = {
+  $show: boolean;
+};
 
-const InfoText = styled.div`
-  animation: my-animation 7s linear infinite;
-  white-space: nowrap;
+const InfoText = styled.div<InfoTextProps>`
   color: white;
   font-size: 2em;
+  margin-left: 10px;
+  padding-bottom: 5px;
+  animation: ${(props) => (props.$show ? 'show' : 'hide')} 2s forwards;
 
-  @keyframes my-animation {
-    from {
-      transform: translateX(100%);
+  @keyframes show {
+    0% {
+      opacity: 0;
     }
-    to {
-      transform: translateX(-100%);
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes hide {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
     }
 `;
 
 type FooterProps = {
-  users: UserDto[];
   textInfo: string;
 };
 
-function Footer({ users, textInfo }: FooterProps) {
+function Footer({ textInfo }: FooterProps) {
   const [infoText, setInfoText] = useState<string>(textInfo);
-  const [playersInfoList, setPlayersInfoList] = useState<string[]>([]);
-  const usersRef = useRef(users);
-  const { t } = useTranslation('translation');
+  const [showText, setShowText] = useState<boolean>(true);
+  const { getNextTextInfo, textInfoList } = useToast();
+  // eslint-disable-next-line no-undef
+  const timerId = useRef<NodeJS.Timer>();
 
-  const nextMessage = useCallback(
-    (lastMessage: string) => {
-      const message = playersInfoList.shift();
-      setPlayersInfoList((prevState) => {
-        return prevState;
-      });
-      if (message) {
-        return message;
-      }
-      const hiddenUsers = usersRef.current.length - 4;
-      if (!lastMessage.includes('+') && hiddenUsers > 0) {
-        return t('obs.user', { count: hiddenUsers });
-      }
-      return textInfo;
-    },
-    [playersInfoList, t, textInfo]
-  );
+  const nextMessage = useCallback(() => {
+    const message = getNextTextInfo();
+    return message || textInfo;
+  }, [getNextTextInfo, textInfo]);
 
-  const timeOutCallback = useCallback(() => {
-    setInfoText((prevState) => nextMessage(prevState));
-  }, [nextMessage]);
-
-  useLayoutEffect(() => {
-    const lastUsersList = usersRef.current;
-
-    // deleted users
-    if (lastUsersList.length > users.length) {
-      const filteredList = lastUsersList.filter(
-        (user) => !users.some((u) => u.username === user.username)
-      );
-      const messagesList = filteredList.map((user) => {
-        return t('user.deleted', { username: user.username });
-      });
-      setPlayersInfoList((prevState) => [...prevState, ...messagesList]);
+  const showAndHideMessage = useCallback(() => {
+    if (textInfoList.length === 0 && infoText === textInfo) {
+      return;
     }
-    // added users
-    if (lastUsersList.length < users.length) {
-      const filteredList = users.filter(
-        (user) => !lastUsersList.some((u) => u.username === user.username)
-      );
-      const messagesList = filteredList.map((user) => {
-        return t('user.added', { username: user.username });
-      });
-      setPlayersInfoList((prevState) => [...prevState, ...messagesList]);
+    if (showText) {
+      setShowText(false);
+      return;
     }
-
-    usersRef.current = users;
-  }, [t, users]);
+    const message = nextMessage();
+    setInfoText(message);
+  }, [infoText, nextMessage, showText, textInfo, textInfoList.length]);
 
   useEffect(() => {
-    const timerId = setInterval(timeOutCallback, 7000);
+    setShowText(true);
+  }, [infoText]);
+
+  useEffect(() => {
+    // Start timer interval to flashes and go to the next message
+    timerId.current = setInterval(showAndHideMessage, 2500);
 
     return () => {
-      clearInterval(timerId);
+      if (timerId.current) clearInterval(timerId.current);
     };
-  }, [timeOutCallback]);
+  }, [showAndHideMessage]);
 
   return (
     <StyledFooter>
-      <ScrollContainer>
-        <InfoText>{infoText}</InfoText>
-      </ScrollContainer>
+      <InfoText $show={showText}>{infoText}</InfoText>
     </StyledFooter>
   );
 }

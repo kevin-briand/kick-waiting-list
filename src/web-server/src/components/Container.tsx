@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: 98%;
+  height: 350px;
   display: flex;
   flex-direction: column;
-  background-color: rgba(2, 2, 2, 0.5);
+  background-color: rgba(33, 37, 41, 1);
+  border-radius: 20px;
+  border: 5px solid #343a40;
 `;
 
 export default Container;
