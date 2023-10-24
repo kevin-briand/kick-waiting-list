@@ -12,5 +12,7 @@ export type ConfigDto = {
   moderatorCommands: boolean;
   removePlayerCommand: string;
   clearListCommand: string;
+  liveCommand: string;
+  nextLiveCommand: string;
   stateListOnStartup: boolean;
 };

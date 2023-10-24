@@ -101,6 +101,7 @@ export function UserListProvider({ children }: UserListProviderProps) {
       if (user.status === UserStatus.LIVE) {
         return;
       }
+      // if already max players in the live
       if (
         usersList.filter(
           (currentUser) => currentUser.status === UserStatus.LIVE

@@ -6,6 +6,7 @@ const Input = styled.input`
   border: none;
   color: ${({ theme }) => theme.colors.text.light};
   border-bottom: 1px solid ${({ theme }) => theme.colors.text.light};
+  height: 25px;
 
   &:enabled {
     color: ${({ theme }) => theme.colors.text.dark};

@@ -25,82 +25,107 @@ function WaitingList() {
     toggleAcceptNewUser,
   } = useUsersList();
 
+  const getUsernameFromMessage = useCallback(
+    (message: string) => {
+      const result = message.match(config.usernamePattern);
+      return result && result[1] ? result[1] : undefined;
+    },
+    [config.usernamePattern]
+  );
+
+  // Add user to the list
   const handleSubscribeMessage = useCallback(
     (data: DataDto) => {
+      // if the list is closed, abort
       if (!acceptNewUser) {
         return;
       }
+
+      const { sender: user, content: message } = data;
+      const { botrixId, onlyBotrix: onlyBotrixCanSubscribe } = config;
+
+      // if only botrix can add user
       if (
-        (config.onlyBotrix && data.sender.id !== config.botrixId) ||
-        (!config.onlyBotrix && data.sender.id === config.botrixId)
+        (onlyBotrixCanSubscribe && user.id !== botrixId) ||
+        (!onlyBotrixCanSubscribe && user.id === botrixId)
       ) {
         return;
       }
-      let { username } = data.sender;
-      if (config.onlyBotrix) {
-        const result = data.content.match(config.usernamePattern);
-        if (!result || result[1] === '') {
-          return;
-        }
-        [, username] = result;
+      // get username in the message if only botrix or in the sender object
+      const username = onlyBotrixCanSubscribe
+        ? getUsernameFromMessage(message)
+        : user.username;
+      if (username) {
+        addUser({ username, status: UserStatus.WAIT });
       }
-      addUser({ username, status: UserStatus.WAIT });
     },
-    [
-      acceptNewUser,
-      addUser,
-      config.botrixId,
-      config.onlyBotrix,
-      config.usernamePattern,
-    ]
+    [acceptNewUser, addUser, config, getUsernameFromMessage]
   );
 
+  // Eval commands send by moderators
   const handleModeratorCommands = useCallback(
     (data: DataDto) => {
-      const moderatorLevelBagdeType = [
+      const moderatorLevelBadgeType = [
         badgeType.MODERATOR,
         badgeType.BROADCASTER,
       ];
+      const message = data.content;
+      const removePlayerCommand = config.removePlayerCommand.trim();
+      const clearListCommand = config.clearListCommand.trim();
+      const liveCommand = config.liveCommand.trim();
+      const nextLiveCommand = config.nextLiveCommand.trim();
+      const userBadges = data.sender.identity.badges;
+
+      // Test if the user is a moderator
       if (
-        !data.sender.identity.badges.some((badge) =>
-          moderatorLevelBagdeType.includes(badge.type)
+        !userBadges.some((badge) =>
+          moderatorLevelBadgeType.includes(badge.type)
         )
       ) {
         return;
       }
-      if (data.content.includes(config.removePlayerCommand.trim())) {
-        const player = data.content.match(config.usernamePattern);
-        if (!player || player[1] === '') {
+      // get username in the message
+      const username = getUsernameFromMessage(message);
+
+      if (message.includes(removePlayerCommand)) {
+        if (!username) {
           return;
         }
-        deleteUser(player[1]);
-      } else if (data.content.includes(config.clearListCommand.trim())) {
+        deleteUser(username);
+      } else if (message.includes(clearListCommand)) {
         clearList();
+      } else if (message.includes(liveCommand)) {
+        if (!username) {
+          return;
+        }
+        handleUserGoingLive({ username, status: UserStatus.WAIT });
+      } else if (message.includes(nextLiveCommand)) {
+        handleNextViewers();
       }
     },
     [
       clearList,
       config.clearListCommand,
+      config.liveCommand,
+      config.nextLiveCommand,
       config.removePlayerCommand,
-      config.usernamePattern,
       deleteUser,
+      getUsernameFromMessage,
+      handleNextViewers,
+      handleUserGoingLive,
     ]
   );
 
   const handleChatMessage = useCallback(
     (data: KickDataDto) => {
-      if (
-        config.subscribe.some((value) =>
-          data.data.content.includes(value.trim())
-        )
-      ) {
+      const { sender: user, content: message } = data.data;
+
+      if (config.subscribe.some((value) => message.includes(value.trim()))) {
         handleSubscribeMessage(data.data);
       } else if (
-        config.unsubscribe.some((value) =>
-          data.data.content.includes(value.trim())
-        )
+        config.unsubscribe.some((value) => message.includes(value.trim()))
       ) {
-        deleteUser(data.data.sender.username);
+        deleteUser(user.username);
       } else if (config.moderatorCommands) {
         handleModeratorCommands(data.data);
       }

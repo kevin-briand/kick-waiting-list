@@ -15,6 +15,7 @@ const Select = styled.select`
     outline: none;
     border-bottom: 2px solid ${({ theme }) => theme.colors.text.dark};
   }
+  height: 25px;
 `;
 
 export default Select;

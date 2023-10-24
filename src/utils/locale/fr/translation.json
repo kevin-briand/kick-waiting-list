@@ -62,8 +62,10 @@
     "defaultValue": {
       "subscribe": "Ton ticket est acheté",
       "unsubscribe": "!partir",
-      "rmPlayerCommand": "!quit",
-      "clearListCommand": "!clear"
+      "rmPlayerCommand": "!rm",
+      "clearListCommand": "!clear",
+      "liveCommand": "!live",
+      "nextLiveCommand": "!nextLive"
     },
     "label": {
       "general": "Général",
@@ -92,7 +94,9 @@
       "rmPlayerCommand": "Supprimer un joueur",
       "clearListCommand": "Vider la liste",
       "moderatorCommand": "Commandes modérateur",
-      "stateList": "Etat de la liste au lancement"
+      "stateList": "Etat de la liste au lancement",
+      "liveCommand": "Placer un joueur en live",
+      "nextLiveCommand": "Placer les joueurs suivant en live"
     },
     "tooltip": {
       "username": "Saisissez votre nom d'utilisateur Kick puis cliquez sur le bouton '$t(form.label.getChatId)' pour obtenir votre ID de chat",
@@ -109,7 +113,9 @@
       "viewersLive": "Choisissez le nombre de viewers en jeu en même temps",
       "moderatorCommands": "Autoriser les modérateurs à utiliser des commandes pour intervenir sur la liste d'attente",
       "rmPlayerCommand": "Commande pour supprimer un joueur de la liste d'attente. ex: !quit @player",
-      "clearListCommand": "Commande pour vider la liste d'attente"
+      "clearListCommand": "Commande pour vider la liste d'attente",
+      "liveCommand": "Commande pour permettre de placer un joueur en live",
+      "nextLiveCommand": "Commande pour déplacer les joueurs suivant en live(suivant le nombre de joueurs saisie dans l'option '$t(form.label.viewersLive)')"
     }
   }
 }

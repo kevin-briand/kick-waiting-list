@@ -8,7 +8,9 @@ import React, {
 import { useTranslation } from 'react-i18next';
 import {
   CLEAR_LIST_COMMAND_KEY,
+  LIVE_COMMAND_KEY,
   MODERATOR_COMMANDS_KEY,
+  NEXT_LIVE_COMMAND_KEY,
   ONLY_BOTRIX_KEY,
   REMOVE_PLAYER_COMMAND_KEY,
   SUBSCRIBE_KEY,
@@ -39,6 +41,8 @@ function MessagePattern({ save, datasSaved }: MessagePatternProps) {
   const moderatorCommandsRef = useRef<HTMLInputElement>(null);
   const rmPlayerCommandRef = useRef<HTMLInputElement>(null);
   const clearListCommandRef = useRef<HTMLInputElement>(null);
+  const liveCommandRef = useRef<HTMLInputElement>(null);
+  const nextLiveCommandRef = useRef<HTMLInputElement>(null);
 
   const saveParameters = useCallback(() => {
     setSaved(save);
@@ -58,6 +62,14 @@ function MessagePattern({ save, datasSaved }: MessagePatternProps) {
         {
           ref: clearListCommandRef,
           translationKey: 'form.label.clearListCommand',
+        },
+        {
+          ref: liveCommandRef,
+          translationKey: 'form.label.liveCommand',
+        },
+        {
+          ref: nextLiveCommandRef,
+          translationKey: 'form.label.nextLiveCommand',
         },
       ])
     ) {
@@ -81,6 +93,8 @@ function MessagePattern({ save, datasSaved }: MessagePatternProps) {
       CLEAR_LIST_COMMAND_KEY,
       clearListCommandRef.current!.value
     );
+    localStorage.set(LIVE_COMMAND_KEY, liveCommandRef.current!.value);
+    localStorage.set(NEXT_LIVE_COMMAND_KEY, nextLiveCommandRef.current!.value);
     datasSaved();
   }, [datasSaved, localStorage, save, validForm]);
 
@@ -154,6 +168,26 @@ function MessagePattern({ save, datasSaved }: MessagePatternProps) {
             t('form.defaultValue.clearListCommand')
           }
           ref={clearListCommandRef}
+        />
+        {t('form.label.liveCommand')}
+        <Input
+          type="text"
+          title={t('form.tooltip.liveCommand')}
+          defaultValue={
+            localStorage.get(LIVE_COMMAND_KEY) ||
+            t('form.defaultValue.liveCommand')
+          }
+          ref={liveCommandRef}
+        />
+        {t('form.label.nextLiveCommand')}
+        <Input
+          type="text"
+          title={t('form.tooltip.nextLiveCommand')}
+          defaultValue={
+            localStorage.get(NEXT_LIVE_COMMAND_KEY) ||
+            t('form.defaultValue.nextLiveCommand')
+          }
+          ref={nextLiveCommandRef}
         />
       </Grid>
     </>

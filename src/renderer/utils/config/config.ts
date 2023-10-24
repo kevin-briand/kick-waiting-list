@@ -6,7 +6,9 @@ import {
   CLEAR_LIST_COMMAND_KEY,
   LANGUAGE_KEY,
   LIST_ON_STARTUP_KEY,
+  LIVE_COMMAND_KEY,
   MODERATOR_COMMANDS_KEY,
+  NEXT_LIVE_COMMAND_KEY,
   ONLY_BOTRIX_KEY,
   REMOVE_PLAYER_COMMAND_KEY,
   SUBSCRIBE_KEY,
@@ -35,6 +37,8 @@ class Config {
       moderatorCommands: Boolean(this.localStorage.get(MODERATOR_COMMANDS_KEY)),
       removePlayerCommand: this.localStorage.get(REMOVE_PLAYER_COMMAND_KEY),
       clearListCommand: this.localStorage.get(CLEAR_LIST_COMMAND_KEY),
+      liveCommand: this.localStorage.get(LIVE_COMMAND_KEY),
+      nextLiveCommand: this.localStorage.get(NEXT_LIVE_COMMAND_KEY),
       stateListOnStartup: this.localStorage.get(LIST_ON_STARTUP_KEY) === '1',
     };
   };

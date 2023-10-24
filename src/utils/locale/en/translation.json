@@ -62,8 +62,10 @@
     "defaultValue": {
       "subscribe": "Your ticket has been purchased",
       "unsubscribe": "!quit",
-      "rmPlayerCommand": "!quit",
-      "clearListCommand": "!clear"
+      "rmPlayerCommand": "!rm",
+      "clearListCommand": "!clear",
+      "liveCommand": "!live",
+      "nextLiveCommand": "!nextLive"
     },
     "label": {
       "general": "General",
@@ -92,7 +94,9 @@
       "rmPlayerCommand": "Remove player",
       "clearListCommand": "Clear list",
       "moderatorCommand": "Moderator commands",
-      "stateList": "State list on startup"
+      "stateList": "State list on startup",
+      "liveCommand": "Move a player to the live",
+      "nextLiveCommand": "Move the next players to the live"
     },
     "tooltip": {
       "username": "Enter your Kick username, then click on the '$t(form.label.getChatId)' button to obtain your chat ID.",
@@ -109,7 +113,9 @@
       "viewersLive": "Set the number of simultaneous viewers in Live",
       "moderatorCommands": "Moderators can use commands to update the waiting list",
       "rmPlayerCommand": "Command to remove a player from the list. ex: !quit @player",
-      "clearListCommand": "Command to clear the queue"
+      "clearListCommand": "Command to clear the queue",
+      "liveCommand": "Command to move a player to the live",
+      "nextLiveCommand": "Command to move the next players to the live (depending on the number of players entered in the '$t(form.label.viewersLive)')"
     }
   }
 }
