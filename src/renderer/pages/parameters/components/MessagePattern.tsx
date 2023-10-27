@@ -9,9 +9,11 @@ import { useTranslation } from 'react-i18next';
 import {
   CLEAR_LIST_COMMAND_KEY,
   LIVE_COMMAND_KEY,
+  CLOSE_LIST_COMMAND_KEY,
   MODERATOR_COMMANDS_KEY,
   NEXT_LIVE_COMMAND_KEY,
   ONLY_BOTRIX_KEY,
+  OPEN_LIST_COMMAND_KEY,
   REMOVE_PLAYER_COMMAND_KEY,
   SUBSCRIBE_KEY,
   UNSUBSCRIBE_KEY,
@@ -43,6 +45,8 @@ function MessagePattern({ save, datasSaved }: MessagePatternProps) {
   const clearListCommandRef = useRef<HTMLInputElement>(null);
   const liveCommandRef = useRef<HTMLInputElement>(null);
   const nextLiveCommandRef = useRef<HTMLInputElement>(null);
+  const openListCommandRef = useRef<HTMLInputElement>(null);
+  const closeListCommandRef = useRef<HTMLInputElement>(null);
 
   const saveParameters = useCallback(() => {
     setSaved(save);
@@ -71,6 +75,14 @@ function MessagePattern({ save, datasSaved }: MessagePatternProps) {
           ref: nextLiveCommandRef,
           translationKey: 'form.label.nextLiveCommand',
         },
+        {
+          ref: openListCommandRef,
+          translationKey: 'form.label.openListCommand',
+        },
+        {
+          ref: closeListCommandRef,
+          translationKey: 'form.label.closeListCommand',
+        },
       ])
     ) {
       return;
@@ -95,6 +107,12 @@ function MessagePattern({ save, datasSaved }: MessagePatternProps) {
     );
     localStorage.set(LIVE_COMMAND_KEY, liveCommandRef.current!.value);
     localStorage.set(NEXT_LIVE_COMMAND_KEY, nextLiveCommandRef.current!.value);
+    localStorage.set(OPEN_LIST_COMMAND_KEY, openListCommandRef.current!.value);
+    localStorage.set(
+      CLOSE_LIST_COMMAND_KEY,
+      closeListCommandRef.current!.value
+    );
+
     datasSaved();
   }, [datasSaved, localStorage, save, validForm]);
 
@@ -188,6 +206,26 @@ function MessagePattern({ save, datasSaved }: MessagePatternProps) {
             t('form.defaultValue.nextLiveCommand')
           }
           ref={nextLiveCommandRef}
+        />
+        {t('form.label.openListCommand')}
+        <Input
+          type="text"
+          title={t('form.tooltip.openListCommand')}
+          defaultValue={
+            localStorage.get(OPEN_LIST_COMMAND_KEY) ||
+            t('form.defaultValue.openListCommand')
+          }
+          ref={openListCommandRef}
+        />
+        {t('form.label.closeListCommand')}
+        <Input
+          type="text"
+          title={t('form.tooltip.closeListCommand')}
+          defaultValue={
+            localStorage.get(CLOSE_LIST_COMMAND_KEY) ||
+            t('form.defaultValue.closeListCommand')
+          }
+          ref={closeListCommandRef}
         />
       </Grid>
     </>

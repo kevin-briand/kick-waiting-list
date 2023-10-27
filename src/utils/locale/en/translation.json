@@ -65,7 +65,9 @@
       "rmPlayerCommand": "!rm",
       "clearListCommand": "!clear",
       "liveCommand": "!live",
-      "nextLiveCommand": "!nextLive"
+      "nextLiveCommand": "!nextLive",
+      "openListCommand": "!openList",
+      "closeListCommand": "!closeList"
     },
     "label": {
       "general": "General",
@@ -96,7 +98,9 @@
       "moderatorCommand": "Moderator commands",
       "stateList": "State list on startup",
       "liveCommand": "Move a player to the live",
-      "nextLiveCommand": "Move the next players to the live"
+      "nextLiveCommand": "Move the next players to the live",
+      "openListCommand": "Open list",
+      "closeListCommand": "Close list"
     },
     "tooltip": {
       "username": "Enter your Kick username, then click on the '$t(form.label.getChatId)' button to obtain your chat ID.",
@@ -115,7 +119,9 @@
       "rmPlayerCommand": "Command to remove a player from the list. ex: !quit @player",
       "clearListCommand": "Command to clear the queue",
       "liveCommand": "Command to move a player to the live",
-      "nextLiveCommand": "Command to move the next players to the live (depending on the number of players entered in the '$t(form.label.viewersLive)')"
+      "nextLiveCommand": "Command to move the next players to the live (depending on the number of players entered in the '$t(form.label.viewersLive)')",
+      "openListCommand": "Open the waiting list to the subscription",
+      "closeListCommand": "Close the waiting list to the subscription"
     }
   }
 }

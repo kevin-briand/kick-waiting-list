@@ -74,6 +74,8 @@ function WaitingList() {
       const clearListCommand = config.clearListCommand.trim();
       const liveCommand = config.liveCommand.trim();
       const nextLiveCommand = config.nextLiveCommand.trim();
+      const openListCommand = config.openListCommand.trim();
+      const closeListCommand = config.closeListCommand.trim();
       const userBadges = data.sender.identity.badges;
 
       // Test if the user is a moderator
@@ -101,15 +103,27 @@ function WaitingList() {
         handleUserGoingLive({ username, status: UserStatus.WAIT });
       } else if (message.includes(nextLiveCommand)) {
         handleNextViewers();
+      } else if (message.includes(openListCommand)) {
+        if (!acceptNewUser) {
+          toggleAcceptNewUser();
+        }
+      } else if (message.includes(closeListCommand)) {
+        if (acceptNewUser) {
+          toggleAcceptNewUser();
+        }
       }
     },
     [
+      acceptNewUser,
       clearList,
       config.clearListCommand,
       config.liveCommand,
       config.nextLiveCommand,
       config.removePlayerCommand,
+      config.closeListCommand,
+      config.openListCommand,
       deleteUser,
+      toggleAcceptNewUser,
       getUsernameFromMessage,
       handleNextViewers,
       handleUserGoingLive,

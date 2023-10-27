@@ -15,4 +15,6 @@ export type ConfigDto = {
   liveCommand: string;
   nextLiveCommand: string;
   stateListOnStartup: boolean;
+  openListCommand: string;
+  closeListCommand: string;
 };

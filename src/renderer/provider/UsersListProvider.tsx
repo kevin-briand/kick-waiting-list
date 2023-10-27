@@ -15,14 +15,23 @@ import UserDtoFixture from '../utils/helpers/fixture/user-dto.fixture';
 import UserStatus from '../pages/waiting-list/components/list/enum/user-status';
 
 type UserType = {
+  // return the current users list
   usersList: UserDto[];
+  // add the user in the list, do nothing if the user already exist
   addUser: (user: UserDto) => void;
+  // remove the user in the list, do nothing if not exist
   deleteUser: (user: string) => void;
+  // remove all users in the list
   clearList: () => void;
+  // replace the current list with fake users
   fakeUsersList: () => void;
+  // remove the users in live in the list and place the next users to live
   handleNextViewers: () => void;
+  // Place the user in live, only if the max users live is not reached
   handleUserGoingLive: (user: UserDto) => void;
+  // return the list subscription state, if true, users can subscribe to the list
   acceptNewUser: boolean;
+  // Toggle the subscription, close <> open
   toggleAcceptNewUser: () => void;
 };
 

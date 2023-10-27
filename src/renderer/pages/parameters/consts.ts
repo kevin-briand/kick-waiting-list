@@ -16,6 +16,8 @@ export const REMOVE_PLAYER_COMMAND_KEY = 'rmPlayerCommand';
 export const CLEAR_LIST_COMMAND_KEY = 'clearListCommand';
 export const LIVE_COMMAND_KEY = 'liveCommand';
 export const NEXT_LIVE_COMMAND_KEY = 'nextLiveCommand';
+export const OPEN_LIST_COMMAND_KEY = 'openListCommand';
+export const CLOSE_LIST_COMMAND_KEY = 'closeListCommand';
 export const LIST_ON_STARTUP_KEY = 'listOnStartup';
 
 export const BOTRIX_DEFAULT_ID = 1160406;
