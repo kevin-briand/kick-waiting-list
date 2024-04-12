@@ -1,5 +1,6 @@
 ![preview](src/renderer/img/logo-no-background.svg)
 
+**Replaced by https://willowstream.fr, this project is no longer maintained.**
 
 Kick waiting list is an application that allow viewers to join a waiting list to play with the streamer.
 This application was originally created for the streamer [Ory_Gami](https://kick.com/ory-gami), If you like this application follow her.
